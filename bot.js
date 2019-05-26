@@ -95,11 +95,7 @@ client.on("message", message => {
          -📚 البوت عربي و سيتم اضافه اللغه النكليزية
 		    ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
          ------------------------------
-         -bc1 : برودكاست لجميع اعضاء السيرفر بايمبد
-         -bc2 : برودكاست لجميع اعضاء السيرفر بدون ايمبد
-         -bc3 : برودكاست للاعضاء  الاونلاين فقط
-         ------------------------------
-		      💎『اوامر عامة』💎
+		        💎『اوامر عامة』💎
          -id : 『عرض ملفك الشخصي』
          -ask : 『البوت يسئلك اسئلة』
          -server : 『معلومات عن السيرفر』
@@ -113,6 +109,7 @@ client.on("message", message => {
 		 -calculate / حاسبة』
 		 -contact/ارسال اقتراح او لمراسلة صاحب البوت
 		 -members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص
+		 -bc  『خيارات البرودكاست』
          ------------------------------
 		    👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
@@ -638,37 +635,6 @@ client.on('message', message => {
     }
 });
 
-/*MUTE CHANNEL*/
-
-client.on('message', message => {
-
-    if (message.content === "+mutechannel") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-
-           }).then(() => {
-               message.reply("تم تقفيل الشات :white_check_mark: ")
-           });
-             }
-if (message.content === "+unmutechannel") {
-    if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-
-           }).then(() => {
-               message.reply("تم فتح الشات:white_check_mark:")
-           });
-             }  
-
-
-
-});
-
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + 'roll')) {
         let args = message.content.split(" ").slice(1);
@@ -979,6 +945,73 @@ return;
     } else {
         return;
     }
+});
+
+client.on('message', async message =>{
+const ms = require("ms");
+if (message.author.omar) return;
+if (!message.content.startsWith(prefix)) return;
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+if(!message.member.hasPermission('MANAGE_ROLES')) return
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
+var command = message.content.split(" ")[0];
+command = command.slice(prefix.length);
+var args = message.content.split(" ").slice(1);
+    if(command == "mute") {
+    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    if(!tomute) return message.reply("**يجب عليك المنشن اولاّ**:x: ") .then(m => m.delete(5000));
+    if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**للأسف لا أمتلك صلاحية** `MANAGE_MASSAGEES`');
+    let muterole = message.guild.roles.find(`name`, "ميوت");
+    //start of create role
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "ميوت",
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
+    }
+    //end of create role
+    let mutetime = args[1];
+    if(!mutetime) return message.reply("**يرجى تحديد وقت الميوت**:x:");
+  
+    await(tomute.addRole(muterole.id));
+    message.reply(`<@${tomute.id}> تم اعطائه ميوت ومدة الميوت : ${ms(ms(mutetime))}`);
+    setTimeout(function(){
+      tomute.removeRole(muterole.id);
+      message.channel.send(`<@${tomute.id}> **انقضى الوقت وتم فك الميوت عن الشخص**:white_check_mark: `);
+    }, ms(mutetime));
+  
+  
+
+  }
+if(command === `unmute`) {
+  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
+
+  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
+
+  let role = message.guild.roles.find (r => r.name === "ميوت");
+  
+  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
+
+  await toMute.removeRole(role)
+  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
+
+  return;
+
+  }
+
 });
  
 client.login(process.env.BOT_TOKEN)
