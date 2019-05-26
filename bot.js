@@ -77,8 +77,6 @@ client.on('ready', function(){
 client.on("message", message => {
     if (message.content === (prefix + "help")) {
 	message.react(":white_check_mark:")
-	message.react(":envelope_with_arrow:")
-	message.react(':white_check_mark:')
      const embed = new Discord.RichEmbed() 
          .setColor("#580e6b")
          .setThumbnail(message.author.avatarURL)
@@ -89,7 +87,6 @@ client.on("message", message => {
          ┃╭━━┫┃┃┃┃┃━━┫ ┃╭━╮┃╭╮┃┃┃
          ┃┃╱╱┃╰┫╰╯┣━━┃ ┃╰━╯┃╰╯┃┃╰╮
 ╰        ╯╱╱╰━┻━━┻━━╯ ╰━━━┻━━╯╰━╯
-   **
 		 ------------------------------
 		 -🚀 سرعه اتصال ممتازه
          -😎 سهل الاستخدام 
