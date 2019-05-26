@@ -856,7 +856,7 @@ if (!message.channel.guild) return;
 let args = message.content.split(" ").slice(1).join(" ");
 
 
-client.users.get("530403193130057740").send(
+client.users.get("580829741498630192").send( 
     "\n" + "**" + "? السيرفر :" + "**" +
     "\n" + "**" + "» " + message.guild.name + "**" +
     "\n" + "**" + " ? المرسل : " + "**" +
