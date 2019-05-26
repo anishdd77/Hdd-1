@@ -11,7 +11,7 @@ client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
-  if (message.author.id !== "460389855382470662") return;
+  if (message.author.id !== "580829741498630192") return;
 
   
   if (message.content.startsWith(prefix + 'setwatch')) {
@@ -77,6 +77,8 @@ client.on('ready', function(){
 client.on("message", message => {
     if (message.content === (prefix + "help")) {
      const embed = new Discord.RichEmbed() 
+	 message.react(':white_check_mark:')
+	 message.react(':envelope_with_arrow:')
          .setColor("#580e6b")
          .setThumbnail(message.author.avatarURL)
          .setDescription(`**
