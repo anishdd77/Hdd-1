@@ -998,7 +998,4 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
   }
 
 });
-
-
- 
 client.login(process.env.BOT_TOKEN)
