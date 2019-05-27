@@ -93,35 +93,35 @@ client.on("message", message => {
          -⚠ صيانه كل يوم
          -💵 مجاني بل كامل 
          -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-		     ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976 البوت خاص ب] ¤
+		     ${prefix} ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
          ------------------------------
 		        💎『اوامر عامة』💎
-         ${prefix}id : 『عرض ملفك الشخصي』
-         ${prefix}ask : 『البوت يسئلك اسئلة』
-         ${prefix}server : 『معلومات عن السيرفر』
-	 ${prefix}ping 『لمعرفه سرعه البوت』
-	 ${prefix}serversعلشان تشوف البوت بكم سيرفر اون لاين 』
-	 ${prefix}bot/ معلومات عن البوت』
-	 ${prefix}avatar/ يعرض صورتك او صوره شخص』
-	 ${prefix}support/ سيرفر الدعم القني و المساعده』
-	 ${prefix}roll <number> ➾ role
-	 ${prefix}draw / يكرر الكلام في صوره』
-	 ${prefix}calculate / حاسبة』
-	 ${prefix}contact/ارسال اقتراح او لمراسلة صاحب البوت
-	 ${prefix}membersعرض لك عدد كل حالات الاشخاص وعددالبوتات وعدد الاشخاص
-	 ${prefix}bc  『خيارات البرودكاست』
-	 ${prefix}say / يكرر الكلام لتكتب』
+         ${prefix}-id : 『عرض ملفك الشخصي』
+         ${prefix}-ask : 『البوت يسئلك اسئلة』
+         ${prefix}-server : 『معلومات عن السيرفر』
+	 ${prefix}-ping 『لمعرفه سرعه البوت』
+	 ${prefix}-serversعلشان تشوف البوت بكم سيرفر اون لاين 』
+	 ${prefix}-bot/ معلومات عن البوت』
+	 ${prefix}-avatar/ يعرض صورتك او صوره شخص』
+	 ${prefix}-support/ سيرفر الدعم القني و المساعده』
+	 ${prefix}-roll <number> ➾ role
+	 ${prefix}-draw / يكرر الكلام في صوره』
+	 ${prefix}-calculate / حاسبة』
+	 ${prefix} -contact/ارسال اقتراح او لمراسلة صاحب البوت
+	 ${prefix}-membersعرض لك عدد كل حالات الاشخاص وعددالبوتات وعدد الاشخاص
+	 ${prefix}-bc  『خيارات البرودكاست』
+	 ${prefix}-say / يكرر الكلام لتكتب』
          ------------------------------
 		    👑『اوامر ادارية』👑
-         ${prefix}ban : 『لتعطي شخص باند』
-         ${prefix}kick : 『لتعطي شخص كيك』
-         ${prefix}clear : 『لمسح الشات برقم』
-         ${prefix}createroles : 『عمل رتب متكاملة للسيرفر』
-         ${prefix}voicesetup : 『انشاء روم فويس اونلاين
+         ${prefix}-ban : 『لتعطي شخص باند』
+         ${prefix}-kick : 『لتعطي شخص كيك』
+         ${prefix}-clear : 『لمسح الشات برقم』
+         ${prefix}-createroles : 『عمل رتب متكاملة للسيرفر』
+         ${prefix}-voicesetup : 『انشاء روم فويس اونلاين
          لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
-	 ${prefix}color 50 /انشاء 50 لون』
-	 ${prefix}mute < mention > ➾ اسكات عضو
-	 ${prefix}unmute <mention> ➾ فك الاسكات من العضو
+	 ${prefix}-color 50 /انشاء 50 لون』
+	 ${prefix}-mute < mention > ➾ اسكات عضو
+	 ${prefix}-unmute <mention> ➾ فك الاسكات من العضو
          ------------------------------
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
@@ -1034,6 +1034,57 @@ if (command == "embed") {
   
 
 
+});
+
+const credits = JSON.parse(fs.readFileSync("./creditsCode.json", "utf8"));
+const coolDown = new Set();
+
+client.on('message',async message => {
+    
+if(message.author.bot) return;
+if(!credits[message.author.id]) credits[message.author.id] = {
+    credits: 50
+};
+
+let userData = credits[message.author.id];
+let m = userData.credits;
+
+fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
+    if (err) console.error(err);
+  });
+  credits[message.author.id] = {
+      credits: m + 0.5,
+  }
+  
+    if(message.content.startsWith(prefix + "credit" || prefix + "credit")) {
+message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`);
+}
+});
+
+client.on('message', async message => {
+    let amount = 250;
+    if(message.content.startsWith(prefix + "daily")) {
+    if(message.author.bot) return;
+    if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes in \`\`1 Day\`\`.**`);
+    
+    let userData = credits[message.author.id];
+    let m = userData.credits + amount;
+    credits[message.author.id] = {
+    credits: m
+    };
+
+    fs.writeFile("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
+    if (err) console.error(err);
+    });
+    
+    message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: ${amount} credits!**`).then(() => {
+        coolDown.add(message.author.id);
+    });
+    
+    setTimeout(() => {
+       coolDown.remove(message.author.id);
+    },86400000);
+    }
 });
  
 client.login(process.env.BOT_TOKEN)
