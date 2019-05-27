@@ -110,7 +110,6 @@ client.on("message", message => {
 		 -contact/ارسال اقتراح او لمراسلة صاحب البوت
 		 -members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص
 		 -bc  『خيارات البرودكاست』
-		 -topinvite/ لعرض قائمه فيها كل واحد ضاف كم 』
          ------------------------------
 		    👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
@@ -487,6 +486,37 @@ client.on('message', message => {
  
         const arraySort = require('array-sort'), 
           table = require('table');
+
+client.on('message' , async (message) => {
+
+ if(message.content.split(' ')[0].toLowerCase() == prefix + 'top') {
+                 if(message.author.bot) return;
+        if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
+
+  var invites = await message.guild.fetchInvites();
+
+    invites = invites.array();
+
+    arraySort(invites, 'uses', { reverse: true });
+
+    let possibleInvites = ['User Invited |  Uses '];
+    invites.forEach(i => {
+        if (i.uses === 0) { 
+            return;
+            
+        }
+      possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
+    
+     
+    })
+    
+    const embed = new Discord.RichEmbed()
+ .setColor('#36393e')
+    .addField("Top Invites." ,`${(possibleInvites)}`)
+
+    message.channel.send(embed)
+    }
+});
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
@@ -970,4 +1000,5 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
   }
 
 });
+ 
 client.login(process.env.BOT_TOKEN)
