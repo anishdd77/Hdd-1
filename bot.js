@@ -93,34 +93,35 @@ client.on("message", message => {
          -⚠ صيانه كل يوم
          -💵 مجاني بل كامل 
          -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-		    ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
+		     ${prefix} ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
          ------------------------------
 		        💎『اوامر عامة』💎
-         -id : 『عرض ملفك الشخصي』
-         -ask : 『البوت يسئلك اسئلة』
-         -server : 『معلومات عن السيرفر』
-		 -ping 『لمعرفه سرعه البوت』
-		 -servers 『علشان تشوف البوت بكم سيرفر اون لاين 』
-		 -bot/ معلومات عن البوت』
-		 -avatar/ يعرض صورتك او صوره شخص』
-		 -support/ سيرفر الدعم القني و المساعده』
-		 -roll <number> ➾ role
-		 -draw / يكرر الكلام في صوره』
-		 -calculate / حاسبة』
-		 -contact/ارسال اقتراح او لمراسلة صاحب البوت
-		 -members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص
-		 -bc  『خيارات البرودكاست』
+         ${prefix}-id : 『عرض ملفك الشخصي』
+         ${prefix}-ask : 『البوت يسئلك اسئلة』
+         ${prefix}-server : 『معلومات عن السيرفر』
+	 ${prefix}-ping 『لمعرفه سرعه البوت』
+	 ${prefix}-serversعلشان تشوف البوت بكم سيرفر اون لاين 』
+	 ${prefix}-bot/ معلومات عن البوت』
+	 ${prefix}-avatar/ يعرض صورتك او صوره شخص』
+	 ${prefix}-support/ سيرفر الدعم القني و المساعده』
+	 ${prefix}-roll <number> ➾ role
+	 ${prefix}-draw / يكرر الكلام في صوره』
+	 ${prefix}-calculate / حاسبة』
+	 ${prefix} -contact/ارسال اقتراح او لمراسلة صاحب البوت
+	 ${prefix}-membersعرض لك عدد كل حالات الاشخاص وعددالبوتات وعدد الاشخاص
+	 ${prefix}-bc  『خيارات البرودكاست』
+	 ${prefix}-say / يكرر الكلام لتكتب』
          ------------------------------
 		    👑『اوامر ادارية』👑
-         -ban : 『لتعطي شخص باند』
-         -kick : 『لتعطي شخص كيك』
-         -clear : 『لمسح الشات برقم』
-         -createroles : 『عمل رتب متكاملة للسيرفر』
-         -voicesetup : 『انشاء روم فويس اونلاين
+         ${prefix}-ban : 『لتعطي شخص باند』
+         ${prefix}-kick : 『لتعطي شخص كيك』
+         ${prefix}-clear : 『لمسح الشات برقم』
+         ${prefix}-createroles : 『عمل رتب متكاملة للسيرفر』
+         ${prefix}-voicesetup : 『انشاء روم فويس اونلاين
          لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
-		 -color 50 /انشاء 50 لون』
-		 -mute < mention > ➾ اسكات عضو
-		 -unmute <mention> ➾ فك الاسكات من العضو
+	 ${prefix}-color 50 /انشاء 50 لون』
+	 ${prefix}-mute < mention > ➾ اسكات عضو
+	 ${prefix}-unmute <mention> ➾ فك الاسكات من العضو
          ------------------------------
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
@@ -129,7 +130,6 @@ client.on("message", message => {
 		       ***Games Commands***
 		 -يخيرك بين شي وشي / لو خيروك』
 		 -لعبه صراحه/صراحه』
-		 -يعطيك عقاب و لازم تنفذه / عقاب』
          
        **  `)
    message.author.sendEmbed(embed)
@@ -487,32 +487,29 @@ client.on('message', message => {
         const arraySort = require('array-sort'), 
           table = require('table');
 
+/*توب انفايت*/
+
+const arraySort = require('array-sort'),
+      table = require('table');
+
 client.on('message' , async (message) => {
 
- if(message.content.split(' ')[0].toLowerCase() == prefix + 'top') {
-                 if(message.author.bot) return;
-        if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
+    if(message.content.startsWith(prefix + "topinvite")) {
 
-  var invites = await message.guild.fetchInvites();
+  let invites = await message.guild.fetchInvites();
 
     invites = invites.array();
 
     arraySort(invites, 'uses', { reverse: true });
 
-    let possibleInvites = ['User Invited |  Uses '];
+    let possibleInvites = [['User', 'Uses']];
     invites.forEach(i => {
-        if (i.uses === 0) { 
-            return;
-            
-        }
-      possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
-    
-     
+      possibleInvites.push([i.inviter.username , i.uses]);
     })
-    
     const embed = new Discord.RichEmbed()
- .setColor('#36393e')
-    .addField("Top Invites." ,`${(possibleInvites)}`)
+    .setColor(0x7289da)
+    .setTitle("دعوات السيرفر")
+    .addField(' المتصدرين' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
 
     message.channel.send(embed)
     }
@@ -998,6 +995,39 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
   return;
 
   }
+
+});
+
+/*امبد-ساي*/
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+ 
+
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+  .setThumbnail(message.author.avatarURL)  
+  .setAuthor(message.author.username)
+    .setDescription(args.join("  "))
+    .setColor(0x06DF00)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+  
+
 
 });
  
