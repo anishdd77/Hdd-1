@@ -486,34 +486,39 @@ client.on('message', message => {
  
         const arraySort = require('array-sort'), 
           table = require('table');
+		  
+		  client.on('message' , async (message) => {
 
-/*توب انفايت*/
+ if(message.content.split(' ')[0].toLowerCase() == prefix + 'top') {
+                 if(message.author.bot) return;
+        if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
 
-const arraySort = require('array-sort'),
-      table = require('table');
-
-client.on('message' , async (message) => {
-
-    if(message.content.startsWith(prefix + "topinvite")) {
-
-  let invites = await message.guild.fetchInvites();
+  var invites = await message.guild.fetchInvites();
 
     invites = invites.array();
 
     arraySort(invites, 'uses', { reverse: true });
 
-    let possibleInvites = [['User', 'Uses']];
+    let possibleInvites = ['User Invited |  Uses '];
     invites.forEach(i => {
-      possibleInvites.push([i.inviter.username , i.uses]);
+        if (i.uses === 0) { 
+            return;
+            
+        }
+      possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
+    
+     
     })
+    
     const embed = new Discord.RichEmbed()
-    .setColor(0x7289da)
-    .setTitle("دعوات السيرفر")
-    .addField(' المتصدرين' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
+ .setColor('#36393e')
+    .addField("Top Invites." ,`${(possibleInvites)}`)
 
     message.channel.send(embed)
     }
 });
+
+
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
