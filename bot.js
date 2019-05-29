@@ -142,7 +142,7 @@ client.on("message", message => {
   .addField("**Server: **" , client.guilds.size)
   message.channel.sendEmbed(embed);
     }
-if (message.content === '//help') {
+if (message.content === '-help') {
          let embed = new Discord.RichEmbed()
 .setThumbnail(message.author.avatarURL)
       .addField("** مبرمج البوت :wrench:**Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ#0976**")
@@ -1046,15 +1046,5 @@ if (command == "embed") {
     message.delete();
   }
   
-
-
-
-client.on('message', message => {
-if (message.content === "-help") {
-message.react(":white_check_mark:")
-
-}
-});
-});
  
 client.login(process.env.BOT_TOKEN)
