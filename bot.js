@@ -125,6 +125,7 @@ client.on("message", message => {
 	     -يخيرك بين شي وشي / لو خيروك』
 	     -لعبه صراحه/صراحه』
          
+		 
        **  `)
    message.author.sendEmbed(embed)
    
@@ -944,8 +945,6 @@ client.on('message', message => {
     message.channel.sendMessage(args.join(" ")).catch(console.error);
   }
   
- 
-
 if (command == "embed") {
     let say = new Discord.RichEmbed()
   .setThumbnail(message.author.avatarURL)  
@@ -955,4 +954,6 @@ if (command == "embed") {
     message.channel.sendEmbed(say);
     message.delete();
   }
+  
+  
 client.login(process.env.BOT_TOKEN)
