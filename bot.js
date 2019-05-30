@@ -86,52 +86,50 @@ client.on("message", message => {
          ┃╭━━┫┃┃┃┃┃━━┫ ┃╭━╮┃╭╮┃┃┃
          ┃┃╱╱┃╰┫╰╯┣━━┃ ┃╰━╯┃╰╯┃┃╰╮
 ╰        ╯╱╱╰━┻━━┻━━╯ ╰━━━┻━━╯╰━╯
-   **
+        
 		 ------------------------------
-		 -🚀 سرعه اتصال ممتازه
-         -😎 سهل الاستخدام 
-         -⚠ صيانه كل يوم
-         -💵 مجاني بل كامل 
-         -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-		    ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
-         ------------------------------
-         -bc1 : برودكاست لجميع اعضاء السيرفر بايمبد
-         -bc2 : برودكاست لجميع اعضاء السيرفر بدون ايمبد
-         -bc3 : برودكاست للاعضاء  الاونلاين فقط
-         ------------------------------
+-🚀 سرعه اتصال ممتازه
+-😎 سهل الاستخدام 
+-⚠ صيانه كل يوم
+-💵 مجاني بل كامل 
+ -📚 البوت عربي و سيتم اضافه اللغه النكليزية
+		     ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
+------------------------------
 		      💎『اوامر عامة』💎
-         -id : 『عرض ملفك الشخصي』
-         -ask : 『البوت يسئلك اسئلة』
-         -server : 『معلومات عن السيرفر』
-		 -ping 『لمعرفه سرعه البوت』
-		 -servers 『علشان تشوف البوت بكم سيرفر اون لاين 』
-		 -bot/ معلومات عن البوت』
-		 -avatar/ يعرض صورتك او صوره شخص』
-		 -support/ سيرفر الدعم القني و المساعده』
-		 -roll <number> ➾ role
-		 -draw / يكرر الكلام في صوره』
-		 -calculate / حاسبة』
-		 -contact/ارسال اقتراح او لمراسلة صاحب البوت
-		 -members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص
-         ------------------------------
+.addField("-id : 『عرض ملفك الشخصي』")
+.addField("-ask : 『البوت يسئلك اسئلة』")
+.addField("-server : 『معلومات عن السيرفر』")
+.addField("-ping 『لمعرفه سرعه البوت』")
+.addField("-servers 『علشان تشوف البوت بكم سيرفر اون لاين 』")
+.addField(" -bot/ معلومات عن البوت』")
+.addField("-avatar/ يعرض صورتك او صوره شخص』")
+.addField("-support/ سيرفر الدعم القني و المساعده』")
+.addField("-roll <number> ➾ role")
+.addField("-draw / يكرر الكلام في صوره』")
+.addField("-calculate / حاسبة』")
+.addField("-contact/ارسال اقتراح او لمراسلة صاحب البوت")
+.addField("-members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص")
+.addField("-bc  『خيارات البرودكاست』")
+.addField("-say / يكرر الكلام لتكتب』")
+------------------------------
 		    👑『اوامر ادارية』👑
-         -ban : 『لتعطي شخص باند』
-         -kick : 『لتعطي شخص كيك』
-         -clear : 『لمسح الشات برقم』
-         -createroles : 『عمل رتب متكاملة للسيرفر』
-         -voicesetup : 『انشاء روم فويس اونلاين
-         لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
-		 -color 50 /انشاء 50 لون』
-		 -mute < mention > ➾ اسكات عضو
-		 -unmute <mention> ➾ فك الاسكات من العضو
-         ------------------------------
-         -guilds : عدد سيرفر البوت
-         -inv : دعوه البوت الى سيرفر (غير ماتحة)
-         -help : عرض هذه الرسالة
-         ------------------------------
+.addField("-ban : 『لتعطي شخص باند』")
+.addField("-kick : 『لتعطي شخص كيك』")
+.addField("-clear : 『لمسح الشات برقم』")
+.addField("-createroles : 『عمل رتب متكاملة للسيرفر』")
+.addField("-voicesetup : 『انشاء روم فويس اونلاين
+لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』")
+.addField(" -color 50 /انشاء 50 لون』")
+.addField("-mute < mention > ➾ اسكات عضو")
+.addField("-unmute <mention> ➾ فك الاسكات من العضو")
+------------------------------
+.addField("-guilds : عدد سيرفر البوت")
+.addField("-inv : دعوه البوت الى سيرفر (غير ماتحة)")
+.addField("-help : عرض هذه الرسالة")
+------------------------------
 		       ***Games Commands***
-		 -يخيرك بين شي وشي / لو خيروك』
-		 -لعبه صراحه/صراحه』
+-يخيرك بين شي وشي / لو خيروك』
+-لعبه صراحه/صراحه』
          
        **  `)
    message.author.sendEmbed(embed)
@@ -140,6 +138,7 @@ client.on("message", message => {
    });  
 client.on('message', message => {
      if (message.content === (prefix + "help")) {
+	  message.react("📩")
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#8650a7")
@@ -360,28 +359,6 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.author.id === client.user.id) return;
-    if (message.guild) {
-   let embed = new Discord.RichEmbed()
-    let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc1') {
-    if (!args[1]) {
-return;
-}
-        message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-            var bc = new Discord.RichEmbed()
-            .addField(' » الرسالة : ', args)
-            .setColor('#ff0000')
-            // m.send(`[${m}]`);
-            m.send(`${m}`,{embed: bc});
-        });
-    }
-    } else {
-        return;
-    }
-});
-client.on('message', message => {
     if (message.content == "-ask") {
          message.react('🤔','👌')
         var x = ['اين يلعب مصطفي فتحي؟', 'ما هو اسم ملعب بارشالونة', 'ما هو يوم الحج الأكبر؟', 'ما هو أطول أنهار أوربا ؟', 'ما هو اسم بيت الدجاج', 'ما هو أول بنك قام بالنشاط المصرفي في السعودية عام 1926م' , 'ما هو أول جامع أقيم في مصر','ما هو أطول نهر في آسيا','ما هو أقرب كوكب إلى الشمس','ما هو الحيوان الذي يُسمى البهنس','ما هو اول مسجد أسس بالمدينة','متى وقع صلح الحديبية عام 6هـ او 3هـ او 2هـ؟','متى قامت أمريكا بأول رحلة فضائية','متى كانت غزوة خيبر؟','ما هي السورة التي تبدأ بقوله تعالى " يا أيها النبي اتق الله ولا تطع الكافرين والمنافقين إن الله كان عليما حكيما ".اجب؟','ما هي السورة التي يطلق عليها عروس القرآن','ماذا يسمى من لايقرأ ولايكتب','ماهي أول دولة استخدمت طابع البريد','ماهو شعار الولايات المتحدة الامريكية','ماهو اذكي الحيوانات','من هو مكتشف أمريكا','مامعنى "فرعون" اجب؟','ماهو اقرب كوكب إلى الارض','ما هي نسبه المياه من الكره الارضيه?','كم عدد السجدات في القرآن الكريم؟','من هو بطل كاس العالم في عام 1966','أين أفتتح اول متحف في العالم?','ماأسم أنثى الحمار?','كم تبلغ درجه حراره الشمس؟','من هي مدينة الضباب','أين توجد أطول سكة حديد في العالم?'
@@ -408,45 +385,37 @@ client.on('message', message => {
         })
     }
 })
+
+client.on('message', msg => { if (msg.content === '-help') { msg.reply('**شــوف في الخاص:mailbox_with_mail:**'); } });
+
+client.on('message', msg => { if (msg.content === 'هلا') { msg.reply('**هــلا والله  **'); } });
+
 client.on('message', message => {
-if (message.author.id === client.user.id) return;
-if (message.guild) {
-let embed = new Discord.RichEmbed()
-let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc2') {
-if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
-if (!args[1]) {
+var prefix = "-";
+
+    if (message.author.id === client.user.id) return;
+    if (message.guild) {
+   let embed = new Discord.RichEmbed()
+    let args = message.content.split(' ').slice(1).join(' ');
+if(message.content.split(' ')[0] == prefix + 'bc') {
+    if (!args[1]) {
+message.channel.send("**bc <message>**");
 return;
 }
-  message.guild.members.forEach(m => {
-if(!message.member.hasPermission('ADMINISTRATOR')) return;
-      var bc = new Discord.RichEmbed()
-      .addField('# | الرسالة ', args)
-      .setThumbnail(message.guild.iconURL)
-      .setColor('RANDOM')
-      m.sendMessage(args)
-  });
-         if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(":x: **ليس لديك صلاحية للنشر هنا**");
-  const AziRo = new Discord.RichEmbed()   
-  .setColor('RANDOM')
-  message.channel.sendEmbed(AziRo);          
-}
-} else {
-  return;
-}
-});
-client.on("message", message => {
-
-            if (message.content.startsWith(prefix + "bc3")) {
-                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-  let args = message.content.split(" ").slice(1);
-  var argresult = args.join(' '); 
-  message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
- m.send(`${argresult}\n ${m}`);
-})
- message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
- message.delete(); 
-};     
+        message.guild.members.forEach(m => {
+   if(!message.member.hasPermission('ADMINISTRATOR')) return;
+            var bc = new Discord.RichEmbed()
+            .addField('» السيرفر :', `${message.guild.name}`)
+            .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
+            .addField(' » الرسالة : ', args)
+            .setColor('#ff0000')
+            // m.send(`[${m}]`);
+            m.send(`${m}`,{embed: bc});
+        });
+    }
+    } else {
+        return;
+    }
 });
 
 
@@ -894,5 +863,32 @@ message.channel.send(embed);
 
     }
       });
+	  
+	  /*امبد-ساي*/
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+  .setThumbnail(message.author.avatarURL)  
+  .setAuthor(message.author.username)
+    .setDescription(args.join("  "))
+    .setColor(0x06DF00)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
  
 client.login(process.env.BOT_TOKEN)
