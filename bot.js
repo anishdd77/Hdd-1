@@ -109,7 +109,8 @@ client.on("message", message => {
 		 .addField("-calculate / حاسبة』")
 		 .addField("-contact/ارسال اقتراح او لمراسلة صاحب البوت")
 		 .addField("-members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص")
-		 .addField("")
+		 .addField("-say / يكرر الكلام لتكتب』")
+		 .addField("-bc『خيارات البرودكاست』")
          ------------------------------
 		    👑『اوامر ادارية』👑
          .addField("-ban : 『لتعطي شخص باند』")
@@ -892,5 +893,60 @@ message.channel.send(embed);
 
     }
       });
+	  
+	  /*امبد-ساي*/
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+  .setThumbnail(message.author.avatarURL)  
+  .setAuthor(message.author.username)
+    .setDescription(args.join("  "))
+    .setColor(0x06DF00)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+  
+  client.on('message', message => {
+var prefix = "-";
+
+    if (message.author.id === client.user.id) return;
+    if (message.guild) {
+   let embed = new Discord.RichEmbed()
+    let args = message.content.split(' ').slice(1).join(' ');
+if(message.content.split(' ')[0] == prefix + 'bc') {
+    if (!args[1]) {
+message.channel.send("**bc <message>**");
+return;
+}
+        message.guild.members.forEach(m => {
+   if(!message.member.hasPermission('ADMINISTRATOR')) return;
+            var bc = new Discord.RichEmbed()
+            .addField('» السيرفر :', `${message.guild.name}`)
+            .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
+            .addField(' » الرسالة : ', args)
+            .setColor('#ff0000')
+            // m.send(`[${m}]`);
+            m.send(`${m}`,{embed: bc});
+        });
+    }
+    } else {
+        return;
+    }
+});
  
 client.login(process.env.BOT_TOKEN)
