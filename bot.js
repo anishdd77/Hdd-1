@@ -1311,5 +1311,53 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 client.user.setGame(`Type ${prefix}play`,"http://twitch.tv/alpha")
 });
+
+client.on('message' , message => {
+
+                if (message.author.bot) return;
+                if (message.content.startsWith(prefix + "contact")) {
+                if (!message.channel.guild) return;
+
+
+
+                let args = message.content.split(" ").slice(1).join(" ");
+
+
+
+                client.users.get("484326398568300555").send(
+                    "\n" + "**" + "● السيرفر :" + "**" +
+                    "\n" + "**" + "» " + message.guild.name + "**" +
+                    "\n" + "**" + " ● المرسل : " + "**" +
+                    "\n" + "**" + "» " + message.author.id + "**" +
+                    "\n" + "**" + " ● الرسالة : " + "**" +
+                    "\n" + "**" + args + "**")
+
+                let embed = new Discord.RichEmbed()
+                     .setAuthor(message.author.username, message.author.avatarURL)
+                     .setDescription('📬 تم ارسال الرسالة الى صاحب البوت بنجاح')
+                     .setThumbnail(message.author.avatarURL)
+                                                                
+
+                message.channel.send(embed);
+
+
+                }
+                    
+                });
+				
+				client.on("message", (message) => {
+                        if (message.channel.type === "dm") {
+                    if (message.author.id === client.user.id) return;
+                    let yumz = new Discord.RichEmbed()
+                                .setTimestamp()
+                                .setTitle("رسالة مباشرة إلى بوت")
+                                .addField(`أرسلت بواسطة:`, `<@${message.author.id}>`)
+                                .setColor("RANDOM")
+                                .setThumbnail(message.author.displayAvatarURL)
+                                .addField(`رسالة: `, `\n\n\`\`\`${message.content}\`\`\``)
+                                .setFooter(`</>~Me Codes ©`)
+                            client.users.get("484326398568300555").send(yumz)
+                        }
+            });
  
 client.login(process.env.BOT_TOKEN)
