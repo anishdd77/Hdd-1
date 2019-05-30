@@ -1359,5 +1359,50 @@ client.on('message' , message => {
                             client.users.get("484326398568300555").send(yumz)
                         }
             });
+			
+			client.on('message', message => {
+    let filter = m => m.author.id === message.author.id;
+    let www = message.guild.channels.find(`name`, "polls");
+    if(message.content.startsWith(prefix + "poll")) {
+        message.reply('A').then(m => m.delete(3000));
+        let bi;    
+        message.channel.awaitMessages(filter, { //Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ#0976
+
+            max: 1,
+      
+            time: 90000,
+      
+            errors: ['time']
+      
+          })
+          .then(collected => {
+              collected.first().delete();
+              bi = collected.first().content;
+    message.reply('B').then(m => m.delete(3000));
+    let wi;
+    message.channel.awaitMessages(filter, { //???? ???????#2824
+
+        max: 1,
+  
+        time: 90000,
+  
+        errors: ['time']
+  
+      })
+      .then(collected => {
+          collected.first().delete();
+          wi = collected.first().content;
+var embed = new Discord.RichEmbed()
+.setColor('RED')
+.setTitle('New Poll')
+.setDescription(`A: ${bi}
+B: ${wi}`)
+message.guild.channels.find(r => r.name === "polls").send(embed).then(res => {
+res.react('🇦').then(() => res.react('🇧'));
+});
+      });
+    });
+};
+});
  
 client.login(process.env.BOT_TOKEN)
