@@ -96,35 +96,32 @@ client.on("message", message => {
 		     ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
          ------------------------------
 		      💎『اوامر عامة』💎
-         .addField("-id : 『عرض ملفك الشخصي』")
-         .addField("-ask : 『البوت يسئلك اسئلة』")
-         .addField("-server : 『معلومات عن السيرفر』")
-		 .addField("-ping 『لمعرفه سرعه البوت』")
-		 .addField("-servers 『علشان تشوف البوت بكم سيرفر اون لاين 』")
-		 .addField(" -bot/ معلومات عن البوت』")
-		 .addField("-avatar/ يعرض صورتك او صوره شخص』")
-		 .addField("-support/ سيرفر الدعم القني و المساعده』")
-		 .addField("-roll <number> ➾ role")
-		 .addField("-draw / يكرر الكلام في صوره』")
-		 .addField("-calculate / حاسبة』")
-		 .addField("-contact/ارسال اقتراح او لمراسلة صاحب البوت")
-		 .addField("-members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص")
-		 .addField("")
+         -id : 『عرض ملفك الشخصي』
+         -ask : 『البوت يسئلك اسئلة』
+         -server : 『معلومات عن السيرفر』
+		 -ping 『لمعرفه سرعه البوت』
+		 -servers 『علشان تشوف البوت بكم سيرفر اون لاين 』
+		 -bot/ معلومات عن البوت』
+		 -avatar/ يعرض صورتك او صوره شخص』
+		 -support/ سيرفر الدعم القني و المساعده』
+		 -roll <number> ➾ role
+		 -draw / يكرر الكلام في صوره』
+		 -calculate / حاسبة』
          ------------------------------
 		    👑『اوامر ادارية』👑
-         .addField("-ban : 『لتعطي شخص باند』")
-         .addField("-kick : 『لتعطي شخص كيك』")
-         .addField("-clear : 『لمسح الشات برقم』")
-         .addField("-createroles : 『عمل رتب متكاملة للسيرفر』")
-         .addField("-voicesetup : 『انشاء روم فويس اونلاين
-         لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』")
-		 .addField(" -color 50 /انشاء 50 لون』")
-		 .addField("-mute < mention > ➾ اسكات عضو")
-		 .addField("-unmute <mention> ➾ فك الاسكات من العضو")
+         -ban : 『لتعطي شخص باند』
+         -kick : 『لتعطي شخص كيك』
+         -clear : 『لمسح الشات برقم』
+         -createroles : 『عمل رتب متكاملة للسيرفر』
+         -voicesetup : 『انشاء روم فويس اونلاين
+         لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
+		 -color 50 /انشاء 50 لون』
+		 -mute < mention > ➾ اسكات عضو
+		 -unmute <mention> ➾ فك الاسكات من العضو
          ------------------------------
-         .addField("-guilds : عدد سيرفر البوت")
-         .addField("-inv : دعوه البوت الى سيرفر (غير ماتحة)")
-         .addField("-help : عرض هذه الرسالة")
+         -guilds : عدد سيرفر البوت
+         -inv : دعوه البوت الى سيرفر (غير ماتحة)
+         -help : عرض هذه الرسالة
          ------------------------------
 		       ***Games Commands***
 		 -يخيرك بين شي وشي / لو خيروك』
@@ -842,55 +839,5 @@ const Sra7a = [
    message.react("??")
  }
 });
-
-client.on('message' , message => {
-if (message.author.bot) return;
-if (message.content.startsWith(prefix + "contact")) {
-if (!message.channel.guild) return;
-
-
-
-let args = message.content.split(" ").slice(1).join(" ");
-
-
-client.users.get("530403193130057740").send(
-    "\n" + "**" + "? السيرفر :" + "**" +
-    "\n" + "**" + "» " + message.guild.name + "**" +
-    "\n" + "**" + " ? المرسل : " + "**" +
-    "\n" + "**" + "» " + message.author.tag + "**" +
-    "\n" + "**" + " ? الرسالة : " + "**" +
-    "\n" + "**" + args + "**")
-
-let embed = new Discord.RichEmbed()
-     .setAuthor(message.author.username, message.author.avatarURL)
-     .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
-     .setThumbnail(message.author.avatarURL)
-     .setFooter("By : Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ#0976")
-                                                
-
-message.channel.send(embed);
-
-
-}
-    
-});
-
- client.on('message',function(message) {
-  if (message.author.bot) return;
-                  if(!message.channel.guild) return;
-
-                    if (message.content === prefix + "members") {
- const embed = new Discord.RichEmbed()
-
-    .setDescription(`**Members info 
-:green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
-:heart:  dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
-:yellow_heart:  idle:     ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
-:diamond_shape_with_a_dot_inside:   membersCount:  ${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size}
-:bulb: bots: ${message.guild.members.filter(m=>m.user.bot).size} **`)
-         message.channel.send({embed});
-
-    }
-      });
  
 client.login(process.env.BOT_TOKEN)
