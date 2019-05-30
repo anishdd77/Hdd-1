@@ -118,7 +118,8 @@ client.on("message", message => {
 		 -color 50 /انشاء 50 لون』
 		 -mute < mention > ➾ اسكات عضو
 		 -unmute <mention> ➾ فك الاسكات من العضو
-         ------------------------------
+		 -bc  『خيارات البرودكاست』
+          ----------------------
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
          -help : عرض هذه الرسالة
@@ -838,6 +839,36 @@ const Sra7a = [
    message.channel.sendEmbed(client);
    message.react("??")
  }
+});
+
+client.on('message', msg => { if (msg.content === 'هلا') { msg.reply('**هــلا والله  **'); } });
+
+client.on('message', message => {
+var prefix = "-";
+
+    if (message.author.id === client.user.id) return;
+    if (message.guild) {
+   let embed = new Discord.RichEmbed()
+    let args = message.content.split(' ').slice(1).join(' ');
+if(message.content.split(' ')[0] == prefix + 'bc') {
+    if (!args[1]) {
+message.channel.send("**bc <message>**");
+return;
+}
+        message.guild.members.forEach(m => {
+   if(!message.member.hasPermission('ADMINISTRATOR')) return;
+            var bc = new Discord.RichEmbed()
+            .addField('» السيرفر :', `${message.guild.name}`)
+            .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
+            .addField(' » الرسالة : ', args)
+            .setColor('#ff0000')
+            // m.send(`[${m}]`);
+            m.send(`${m}`,{embed: bc});
+        });
+    }
+    } else {
+        return;
+    }
 });
  
 client.login(process.env.BOT_TOKEN)
