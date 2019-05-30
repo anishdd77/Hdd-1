@@ -110,7 +110,6 @@ client.on("message", message => {
 		 .addField("-contact/ارسال اقتراح او لمراسلة صاحب البوت")
 		 .addField("-members/عرض لك عدد كل حالات الاشخاص وعدد البوتات وعدد الاشخاص")
 		 .addField("-say / يكرر الكلام لتكتب』")
-		 .addField("-bc『خيارات البرودكاست』")
          ------------------------------
 		    👑『اوامر ادارية』👑
          .addField("-ban : 『لتعطي شخص باند』")
@@ -920,33 +919,5 @@ if (command == "embed") {
     message.channel.sendEmbed(say);
     message.delete();
   }
-  
-  client.on('message', message => {
-var prefix = "-";
-
-    if (message.author.id === client.user.id) return;
-    if (message.guild) {
-   let embed = new Discord.RichEmbed()
-    let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc') {
-    if (!args[1]) {
-message.channel.send("**bc <message>**");
-return;
-}
-        message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-            var bc = new Discord.RichEmbed()
-            .addField('» السيرفر :', `${message.guild.name}`)
-            .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
-            .addField(' » الرسالة : ', args)
-            .setColor('#ff0000')
-            // m.send(`[${m}]`);
-            m.send(`${m}`,{embed: bc});
-        });
-    }
-    } else {
-        return;
-    }
-});
  
 client.login(process.env.BOT_TOKEN)
