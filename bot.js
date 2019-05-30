@@ -118,7 +118,7 @@ client.on("message", message => {
          .addField("-createroles : 『عمل رتب متكاملة للسيرفر』")
          .addField("-voicesetup : 『انشاء روم فويس اونلاين
          لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』")
-		.addField(" -color 50 /انشاء 50 لون』")
+		 .addField(" -color 50 /انشاء 50 لون』")
 		 .addField("-mute < mention > ➾ اسكات عضو")
 		 .addField("-unmute <mention> ➾ فك الاسكات من العضو")
          ------------------------------
