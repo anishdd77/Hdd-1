@@ -518,7 +518,7 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 client.on('guildMemberAdd', member => {
-     const welcomer =  member.guild.channels.find('name', '💫-щéļḉσᶆé👑');
+     const welcomer =  member.guild.channels.find('name', 'щéļḉσᶆé');
     if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -603,7 +603,7 @@ client.on('guildMemberRemove', member => {
         .setColor('RED')
         .setFooter(`==== نــتــمــنــآ لــكــم آســتــمـــتــآع ====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
     
-    var channel =member.guild.channels.find('name', '💫-щéļḉσᶆé👑')
+    var channel =member.guild.channels.find('name', 'щéļḉσᶆé')
     if (!channel) return;
     channel.send({embed : embed});
     })
