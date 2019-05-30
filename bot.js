@@ -1355,7 +1355,7 @@ client.on('message' , message => {
                                 .setColor("RANDOM")
                                 .setThumbnail(message.author.displayAvatarURL)
                                 .addField(`رسالة: `, `\n\n\`\`\`${message.content}\`\`\``)
-                                .setFooter(`</>~Me Codes ©`)
+                                .setFooter(`Anis_hdd ©`)
                             client.users.get("484326398568300555").send(yumz)
                         }
             });
