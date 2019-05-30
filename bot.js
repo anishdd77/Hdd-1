@@ -1309,7 +1309,7 @@ client.on('message', message => {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Type [${prefix}help]`,"http://twitch.tv/alpha")
+client.user.setGame(`Type ${prefix}play`,"http://twitch.tv/alpha")
 });
 
 client.on('message' , message => {
