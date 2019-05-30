@@ -890,5 +890,6 @@ if (command == "embed") {
     message.channel.sendEmbed(say);
     message.delete();
   }
+  
  
 client.login(process.env.BOT_TOKEN)
