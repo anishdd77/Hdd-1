@@ -995,7 +995,7 @@ client.on("message", (message) => {
                         }
             });
 			
-			const replyForMention = [   "**Hi For More Informations Type ||`-help`||♥**",  ]
+			const replyForMention = [   "**Hi For More Informations Type ||*-help*||♥**",  ]
 client.on('message', message=> {
     if (message.author.bot) return;
     if (message.isMentioned(client.user))
