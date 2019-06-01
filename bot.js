@@ -128,6 +128,20 @@ client.on("message", message => {
 		 -يخيرك بين شي وشي / لو خيروك』
 		 -لعبه صراحه/صراحه』
 		 -xo  لعبة اكس او
+		      // Commands Here
+         let cmds = {
+         profile: { cmd: 'بروفايل', a: ['بروفايلي'] },
+         setinfo: { cmd: 'معلوماتي', a: ['معلوماتي تعديل'] },
+         rep: { cmd: 'لايك', a: ['اعجاب'] },
+         credits: { cmd: 'فلوسي', a: ['رصيدي'] },
+         daily: { cmd: 'هدية', a: ['هديه'] },
+         transfer: { cmd: 'تحويل' },
+         add: { cmd: 'فلوس' },
+         buy: { cmd: 'شراء' },
+         set: { cmd: 'خلفية', a: ['خلفيه'] },
+         preview: { cmd: 'تجربة', a: ['تجربه'] },
+         mywalls: { cmd: 'خلفياتي' }
+}
 		 
                                                 **
          
@@ -1260,69 +1274,6 @@ client.on('message',async message => {
     message.channel.send("**✅ تم انشاء روم القبول والرفض بنجاح**")
             }
 })
-
-Client.commands = new Discord.Collection() // Discord Collection For Commands
-Client.aliases = new Discord.Collection() // Discord Collection For Aliases
-
-// SQLite And Databases:
-SQLite.open(path.join(__dirname, 'profile.sql')) // Read SQL file
-.then(() => {
-  console.log('Opened')
-  SQLite.run(`CREATE TABLE IF NOT EXISTS profileSystem (id VARCHAR(30), credits BIGINT, lastDaily BIGINT, xp BIGINT, level BIGINT, rep BIGINT, lastRep BIGINT, info TEXT, inventory JSON, profileData JSON)`)
-})
-.catch(err => console.error(err))
-
-// Commands Here
-let cmds = {
-  profile: { cmd: 'بروفايل', a: ['بروفايلي'] },
-  setinfo: { cmd: 'معلوماتي', a: ['معلوماتي تعديل'] },
-  rep: { cmd: 'لايك', a: ['اعجاب'] },
-  credits: { cmd: 'فلوسي', a: ['رصيدي'] },
-  daily: { cmd: 'هدية', a: ['هديه'] },
-  transfer: { cmd: 'تحويل' },
-  add: { cmd: 'فلوس' },
-  buy: { cmd: 'شراء' },
-  set: { cmd: 'خلفية', a: ['خلفيه'] },
-  preview: { cmd: 'تجربة', a: ['تجربه'] },
-  mywalls: { cmd: 'خلفياتي' }
-}
-
-// Register Commands
-Object.keys(cmds).forEach(key => {
-var value = cmds[key];
-  var command = value.cmd;
-  Client.commands.set(command, command);
-
-  if(value.a) {
-    value.a.forEach(alias => {
-    Client.aliases.set(alias, command)
-  })
-  }
-})
-
-// Functions
-let funcs = {
-
-  generateInt: (low, high) => {
-    return Math.floor(Math.random() * (high - low + 1) + low);
-  },
-  getLevelFromExp: (exp) => {
-    let level = 0;
-
-        while (exp >= funcs.getLevelExp(level)) {
-            exp -= funcs.getLevelExp(level);
-            level++;
-        }
-
-        return level;
-  },
-  getLevelExp: (level) => {
-    return 5 * (Math.pow(level, 2)) + 50 * level + 100;
-  }
-
-}
-
-// Code Begin Here ..
 
 Client.on('ready', () => { // When Bot is ready
   console.log(`Bot is launched.`);
