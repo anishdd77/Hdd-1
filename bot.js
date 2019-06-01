@@ -1318,11 +1318,11 @@ client.on("message", message => {
     if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
     if(!mention) return message.reply('منشن شخص');
     if(!role) return message.reply('ادخل اسم رتبة');
-    if(!Helper) return message.reply('هذه الرتبة غير موجودة');
-    if(mention.roles.has(Helper)) return message.reply('هذا الشخص معه الرتبة مسبقا');
+    if(!mySupport) return message.reply('هذه الرتبة غير موجودة');
+    if(mention.roles.has(mySupport)) return message.reply('هذا الشخص معه الرتبة مسبقا');
  
     mention.addRole(mySupport).then(() => {
-      acRoom.send(`**[ ${Helper} ] واعطائك رتبة ${mention} تم بنجاح قبولك**`);
+      acRoom.send(`**[ ${mySupport} ] واعطائك رتبة ${mention} تم بنجاح قبولك**`);
     });
   }
 }
