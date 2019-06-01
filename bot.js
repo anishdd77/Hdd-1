@@ -1288,6 +1288,45 @@ client.on('message',async message => {
     message.channel.send("**✅ تم انشاء روم القبول والرفض بنجاح**")
             }
 })
+
+client.on('guildMemberAdd', member => {
+    var embed = new Discord.RichEmbed()
+    .setThumbnail(member.user.avatarURL)
+  .addField("***شكرا الانضمامك الـنـا***" ,member.user.username )
+    .setDescription('**# ``-`` __W__elcome __T__ø ${message.guild.name} 🥂**')// كلام ترحيب بعضو
+    .setColor('RANDOM')
+    .setImage('https://2.top4top.net/p_1225y7yza1.gif')// صور ترحيب
+var channel =member.guild.channels.find('name', 'щéļḉσᶆé')// اسم شات ترحيب
+if (!channel) return;
+channel.send({embed : embed});
+});
+
+/*امبد-ساي*/
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+  .setThumbnail(message.author.avatarURL)  
+  .setAuthor(message.author.username)
+    .setDescription(args.join("  "))
+    .setColor(0x06DF00)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
  
  
 client.login(process.env.BOT_TOKEN)
