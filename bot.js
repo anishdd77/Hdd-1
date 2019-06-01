@@ -913,7 +913,7 @@ client.on('message', message => {
     var args = message.content.split(/[ ]+/)
     if(message.content.includes('youtube')){
         message.delete()
-    return message.reply(`** لايمكنك نشر اروابط في هذا اسرفر **`)
+    return message.reply(`** لايمكنك نشر اروابط في هذا السرفر **`)
     }
 
 });
