@@ -1289,8 +1289,6 @@ client.on('message',async message => {
             }
 })
 
-var prefix = "-";
-
 client.on('message',async message => {
   var room;
   var title;//HactorMC
