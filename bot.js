@@ -1192,17 +1192,6 @@ client.on('message',async message => {
   }
 });
 
-client.on('ready', () => {
-   console.log(`----------------`);
-      console.log(`Desert Bot- Script By : EX Clan`);
-        console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By :Anis_hdd `);
-    console.log(`----------------`);
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`${prefix}help ||${prefix}تقديم `,"http://twitch.tv/Death Shop")
-client.user.setStatus("dnd")
-});
-
 client.on("message", async message => {
     if(message.content.startsWith(prefix + "help")) {
         let help = new Discord.RichEmbed()
@@ -1212,7 +1201,7 @@ client.on("message", async message => {
 			============
 			** اوامر تقديم **
 			------
-			1-${prefix}تقديم 
+			1${prefix}تقديم 
 			============
 			اوامر الادارة 
 			------
@@ -1229,7 +1218,7 @@ client.on("message", message => {
         if(!message.channel.guild) return;
                 if(message.author.bot) return;
         let channel = message.guild.channels.find("name", "التقديمات")
-            if(!channel) return message.reply("**لانشاء روم التقديمات !room1 من فضلك اكتب الامر**")
+            if(!channel) return message.reply("**لانشاء روم التقديمات -room1 من فضلك اكتب الامر**")
             if(channel) {
             message.channel.send( message.member + ', **:timer:**').then( (m) =>{
               m.edit( message.member + ', **اسمك الحقيقى  ✍**' )
