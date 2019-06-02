@@ -5,7 +5,7 @@ var client = new Discord.Client();
 client.on('ready', () => {
   console.log(`Welcome in servr Anis ${client.user.tag}!`);
 });
-var prefix = '-'
+var prefix = '#'
 
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
 client.on('ready', function(){
     var ms = 100000 ;
-    var setGame = [`[ -help ]`];   
+    var setGame = [`[ #help ]`];   
     var i = -1;
     var j = 0;
     setInterval(function (){
@@ -106,12 +106,14 @@ client.on("message", message => {
 		 -support/ سيرفر الدعم القني و المساعده』
 		 -roll <number> ➾ role
 		 -draw / يكرر الكلام في صوره』
-		 -calculate / حاسبة』
+		 -calculate / حاسبة』*
+		 -say/يكرر الكلام الي تكتبو
          ------------------------------
 		    👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
          -kick : 『لتعطي شخص كيك』
          -clear : 『لمسح الشات برقم』
+		 -clr <numbr> / مسح الشات بعدد
          -createroles : 『عمل رتب متكاملة للسيرفر』
          -voicesetup : 『انشاء روم فويس اونلاين
          لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
@@ -296,7 +298,8 @@ var prefix = "-"
       })
     }
     });
-	client.on('message', message => {
+
+client.on('message', message => {
    if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'clear')) {
 if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
@@ -1351,5 +1354,61 @@ client.on('message',async message => {
     message.channel.send("**✅ تم انشاء روم القبول والرفض بنجاح**")
             }
 })
+
+client.on('message', message => {
+  if (message.author.bot) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// +say
+  if (command === "say") {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+          message.delete()
+    message.channel.sendMessage(args.join(" "))
+  }
+  
+ 
+
+if (command == "embed") {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `MANAGE_MESSAGES`' );
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+    
+  }
+client.on('message', msg => {
+  if (msg.author.bot) return;
+  if (!msg.content.startsWith(prefix)) return;
+  let command = msg.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = msg.content.split(" ").slice(1);
+
+    if(command === "clr") {
+        const emoji = client.emojis.find("name", "wastebasket")
+    let textxt = args.slice(0).join("");
+    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (textxt == "") {
+        msg.delete().then
+    msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها ??```***").then(m => m.delete(3000));
+} else {
+    msg.delete().then
+    msg.delete().then
+    msg.channel.bulkDelete(textxt);
+        msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
+        }    
+    }
+}
+});
+
+});
  
 client.login(process.env.BOT_TOKEN)
