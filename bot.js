@@ -901,6 +901,7 @@ const Sra7a = [
 });
 
 client.on('message', msg => { if (msg.content === 'هلا') { msg.reply('**هــلا والله  **'); } });
+client.on('message', msg => { if (msg.content === 'خروف') { msg.reply('**:sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: الله يهديك يا خروووف-- https://murtahil.com/wp-content/uploads/2019/03/%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D9%84%D9%84%D8%A7%D8%B7%D9%81%D8%A7%D9%84-%D8%B9%D9%86-%D8%A7%D9%84%D8%AE%D8%B1%D9%88%D9%81-2-1170x610.jpg**'); } });
 
 client.on("message", message => {
 
@@ -914,59 +915,6 @@ client.on("message", message => {
  message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
  message.delete(); 
 };     
-});
-	client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('gmail')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الجيمل  هنا **`)
-    }
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('snapchat')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر سناب شات  هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('instagram')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الانستقرام هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('twitter')){
-        message.delete()
-    return message.reply(`** لايمكنك  نشر التويتر هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('facebook')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الفيس بوك هنا **`)
-    }
-});
-
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر اروابط في هذا السرفر **`)
-    }
-
 });
 
 client.on('message' , message => {
@@ -1650,6 +1598,41 @@ client.on('message', message => {
      
 }); 
 
-client.on('message', msg => { if (msg.content === 'خروف') { msg.reply('**:sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: الله يهديك يا خروووف https://murtahil.com/wp-content/uploads/2019/03/%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D9%84%D9%84%D8%A7%D8%B7%D9%81%D8%A7%D9%84-%D8%B9%D9%86-%D8%A7%D9%84%D8%AE%D8%B1%D9%88%D9%81-2-1170x610.jpg**'); } });
- 
+
+client.on('voiceStateUpdate', (user, member) => {
+  if(member.selfDeaf || member.selfMute || member.serverDeaf || member.serverMute) {
+    returned = false;
+  }
+  if(!member.selfDeaf || !member.selfMute ||!member.serverDeaf || !member.serverMute) {
+    returned = true;
+  }
+  setInterval(() => {
+    if(returned === true) {
+      if(member.bot) return;
+      if(!member.voiceChannel) returned = false;
+      if(!voice[member.id]) voice[member.id] = {
+        xp: 1,
+        level: 1
+      };
+      voice[member.id] = {
+        xp: voice[member.id].xp + Math.floor(Math.random() * 4) + 1,
+        level: voice[member.id].level
+      };
+      var curXp = voice[member.id].xp;
+      var curLvl = voice[member.id].level;
+      if(curXp >= 300) {
+        voice[member.id] = {
+          xp: 1,
+          level: curLvl + 1
+        };
+      }
+      fs.writeFile('./voicerank.json', JSON.stringify(voice, null, 4), (e) => {
+        if(e) console.log(e);
+      });
+    } else if(returned === false) {
+      return null;
+    }
+  },5000);
+});
+
 client.login(process.env.BOT_TOKEN)
