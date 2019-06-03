@@ -108,6 +108,7 @@ client.on("message", message => {
 		 -draw / يكرر الكلام في صوره』
 		 -calculate / حاسبة』
 		 -say/يكرر الكلام الي تكتبو
+		 -skin name in minecraft لإضهار سكنك في ماين طرافت
          ------------------------------
 		    👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
@@ -755,36 +756,6 @@ client.on('message', message => {
     }
 });
 
-/*MUTE CHANNEL*/
-
-client.on('message', message => {
-
-    if (message.content === "+mutechannel") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-
-           }).then(() => {
-               message.reply("تم تقفيل الشات :white_check_mark: ")
-           });
-             }
-if (message.content === "+unmutechannel") {
-    if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-
-           }).then(() => {
-               message.reply("تم فتح الشات:white_check_mark:")
-           });
-             }  
-
-
-
-});
 
 client.on('message', function(message) {
     if(message.content.startsWith(prefix + 'roll')) {
@@ -1647,6 +1618,58 @@ client.on('message', message => {
       message.delete()
       message.channel.send(`**يرجي كتابة اقتراح لكي يتم ارساله الي روم الاقتراحات ❎ **`);
     });
+  }
+});
+
+//كود الميوت وفكه 
+client.on('message', message => {//Toxic Codes
+if(message.content.startsWith(prefix + 'mute')){//Toxic Codes
+    let role = message.guild.roles.find(r => r.name === 'Muted');//Toxic Codes
+    if(!role) message.guild.createRole({name: 'Muted'});//Toxic Codes
+     if(user.bot){//Toxic Codes
+        return message.channel.send(`I can't mute ${user} because he is a bot`);
+    }
+    if(user.hasPermission('ADMINISTRATOR')) {
+        return message.channel.send(`I can't mute ${user} because he is staff`);
+    }//Toxic Codes
+   
+    if(!user){
+        message.channel.send(`There's no person to mute tho`);
+    }
+    message.guild.channels.forEach(f => {
+        f.overwritePermissions(role, {
+            SEND_MESSAGES: false
+        });
+        user.addRole(role);
+       
+    });
+     message.channel.send(`I muted ${user}`);
+}
+});//Toxic Codes
+
+
+client.on('message', message => {
+if(message.content.startsWith(prefix + 'unmute')){
+    let role = message.guild.roles.find(r => r.name === 'Muted');
+if(!user.roles.has(role)) {
+    return message.channel.send(`He is not muted`);
+}
+    user.removeRole(role).then(message.channel.send(`Unmuted ${user}`));
+    
+}
+});
+
+client.on('message', message => {
+  const aa = message.content.split(" ").slice(1).join(" ");
+  if(message.content.startsWith(prefix + "skin")){
+    if(!aa) return message.reply(`:x:  -  **${prefix}skin <name>**`);
+    var ss = new Discord.RichEmbed()
+    .setTitle(`${aa}'s Skin!`)
+    .setURL(`https://minotar.net/armor/body/${aa}/100.png`)
+    .setThumbnail(`https://minotar.net/avatar/${aa}`)
+    .setImage(`https://minotar.net/armor/body/${aa}/100.png`)
+    .setFooter(`Requested By : ${message.author.tag}`, message.author.avatarURL)
+    message.channel.send(ss);
   }
 });
 
