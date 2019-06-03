@@ -120,6 +120,7 @@ client.on("message", message => {
 		 -mute < mention > ➾ اسكات عضو
 		 -unmute <mention> ➾ فك الاسكات من العضو
 		 -bc  『خيارات البرودكاست』
+		 -ce لمح لشات بعدد
           ----------------------
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
@@ -901,8 +902,7 @@ const Sra7a = [
 });
 
 client.on('message', msg => { if (msg.content === 'هلا') { msg.reply('**هــلا والله  **'); } });
-client.on('message', msg => { if (msg.content === 'خروف') { msg.reply('**:sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: :sheep: الله يهديك يا خروووف-- https://murtahil.com/wp-content/uploads/2019/03/%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D9%84%D9%84%D8%A7%D8%B7%D9%81%D8%A7%D9%84-%D8%B9%D9%86-%D8%A7%D9%84%D8%AE%D8%B1%D9%88%D9%81-2-1170x610.jpg**'); } });
-
+client.on('message', msg => { if (msg.content === 'خروف') { msg.reply('**الله يهديك يا خروف*'); } });
 client.on("message", message => {
 
             if (message.content.startsWith(prefix + "bc")) {
@@ -1340,13 +1340,77 @@ client.on('guildMemberAdd', member => {
     var embed = new Discord.RichEmbed()
     .setThumbnail(member.user.avatarURL)
   .addField("*** شكرا الانضمامك الـنـا حبيبي ***" ,member.user.username )
-    .setDescription('**# ``-`` __W__elcome __T__ø server [TitanMc]🥂**')// كلام ترحيب بعضو
+    .setDescription('**# ``-`` __W__elcome __T__ø server 🥂**')// كلام ترحيب بعضو
     .setColor('RANDOM')
     .setImage('https://2.top4top.net/p_1225y7yza1.gif')// صور ترحيب
 var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
 if (!channel) return;
 channel.send({embed : embed});
 });
+client.on('message', async message => {
+            if(message.content.includes('discord.gg')){ 
+                if(message.member.hasPermission("MANAGE_GUILD")) return;
+        if(!message.channel.guild) return;
+        message.delete()
+          var command = message.content.split(" ")[0];
+    let muterole = message.guild.roles.find(`name`, "اسكت");//اسم رتب ميوت
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "اسكت",//اسم رتب ميوت
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
+    }
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(muterole);
+    const embed500 = new Discord.RichEmbed()
+      .setTitle("Muted Ads")
+            .addField(`**  لقد تم اسكاتك **` , `**Reason : تقاسم آخر خلاف الفتنة**`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} `)
+     message.channel.send(embed500)
+     message.author.send('` انت معاقب ميوت شاتي بسبب نشر سرفرات ان كان عن طريق الخطا من فضلك تكلم مع الادارة `');//رسائل الى بعد ميوت فى خاص عضو
+   
+       
+    }
+})
+
+client.on('message', message => {
+    if (message.content.startsWith(prefix + 'ce')) {
+      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ماعندك هذا البرمشن[*MANAGE_MESSAGES*] `).catch(console.error);
+  message.delete()
+  if(!message.channel.guild) return;
+  let args = message.content.split(" ").slice(1);
+  
+  const messagecount = parseInt(args.join(' '));
+  
+  message.channel.fetchMessages({
+  
+  limit: messagecount
+  
+  }).then(messages => message.channel.bulkDelete(messages));
+  message.channel.sendMessage("", {embed: {
+    title: "``✏️✅ تــم مسح الشات ``",
+    color: 0x06DF00,
+    footer: {
+    
+    }
+    }}).then(msg => {msg.delete(3000)});
+  };
+  
+  });
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
@@ -1357,7 +1421,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By Abo Khalil"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1375,7 +1439,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1393,7 +1457,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1412,7 +1476,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1431,7 +1495,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1449,7 +1513,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1467,7 +1531,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1485,7 +1549,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1519,7 +1583,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1538,7 +1602,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1557,100 +1621,12 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          text: "By TitanMc."
         }
       }}).then(msg => {msg.delete(4000)});
                           }
 
      
-});
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('كس اختك')){
-        message.delete()
-      message.channel.sendMessage("", {embed: {
-        title: "لا تسب",
-        color: 0x06DF00,
-        description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
-        footer: {
-          text: "By TitanMc"
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-     
-}); 
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes(' ختك امك')){
-        message.delete()
-      message.channel.sendMessage("", {embed: {
-        title: "لا تسب",
-        color: 0x06DF00,
-        description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
-        footer: {
-          text: "By TitanMc"
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-     
-}); 
-
-	client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('gmail')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الجيمل  هنا **`)
-    }
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('snapchat')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر سناب شات  هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('instagram')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الانستقرام هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('twitter')){
-        message.delete()
-    return message.reply(`** لايمكنك  نشر التويتر هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('facebook')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الفيس بوك هنا **`)
-    }
-});
-
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر اروابط في هذا السرفر **`)
-    }
-
-});
-
+});		 
 
 client.login(process.env.BOT_TOKEN)
