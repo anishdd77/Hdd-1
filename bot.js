@@ -1624,44 +1624,6 @@ client.on('message', message => {
   }
 });
 
-//كود الميوت وفكه 
-client.on('message', message => {//Toxic Codes
-if(message.content.startsWith(prefix + 'mute')){//Toxic Codes
-    let role = message.guild.roles.find(r => r.name === 'Muted');//Toxic Codes
-    if(!role) message.guild.createRole({name: 'Muted'});//Toxic Codes
-     if(user.bot){//Toxic Codes
-        return message.channel.send(`I can't mute ${user} because he is a bot`);
-    }
-    if(user.hasPermission('ADMINISTRATOR')) {
-        return message.channel.send(`I can't mute ${user} because he is staff`);
-    }//Toxic Codes
-   
-    if(!user){
-        message.channel.send(`There's no person to mute tho`);
-    }
-    message.guild.channels.forEach(f => {
-        f.overwritePermissions(role, {
-            SEND_MESSAGES: false
-        });
-        user.addRole(role);
-       
-    });
-     message.channel.send(`I muted ${user}`);
-}
-});//Toxic Codes
-
-
-client.on('message', message => {
-if(message.content.startsWith(prefix + 'unmute')){
-    let role = message.guild.roles.find(r => r.name === 'Muted');
-if(!user.roles.has(role)) {
-    return message.channel.send(`He is not muted`);
-}
-    user.removeRole(role).then(message.channel.send(`Unmuted ${user}`));
-    
-}
-});
-
 client.on('message', message => {
   const aa = message.content.split(" ").slice(1).join(" ");
   if(message.content.startsWith(prefix + "skin")){
@@ -1710,5 +1672,70 @@ client.on('message', message => {
     message.reply('** Done ? **').then(msg => {msg.delete(10000)});
     }
     });
+	
+	client.on('message', async message =>{
+const ms = require("ms");
+if (message.author.omar) return;
+if (!message.content.startsWith(prefix)) return;
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+if(!message.member.hasPermission('MANAGE_ROLES')) return
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
+var command = message.content.split(" ")[0];
+command = command.slice(prefix.length);
+var args = message.content.split(" ").slice(1);
+    if(command == "mute") {
+    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    if(!tomute) return message.reply("**يجب عليك المنشن اولاّ**:x: ") .then(m => m.delete(5000));
+    if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**للأسف لا أمتلك صلاحية** `MANAGE_MASSAGEES`');
+    let muterole = message.guild.roles.find(`name`, "muted");
+    //start of create role
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "muted",
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
+    }
+    //end of create role
+    let mutetime = args[1];
+    if(!mutetime) return message.reply("**يرجى تحديد وقت الميوت**:x:");
+  
+    await(tomute.addRole(muterole.id));
+    message.reply(`<@${tomute.id}> تم اعطائه ميوت ومدة الميوت : ${ms(ms(mutetime))}`);
+    setTimeout(function(){
+      tomute.removeRole(muterole.id);
+      message.channel.send(`<@${tomute.id}> **انقضى الوقت وتم فك الميوت عن الشخص**:white_check_mark: `);
+    }, ms(mutetime));
+  
+  
+
+  }
+if(command === `unmute`) {
+  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
+
+  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
+
+  let role = message.guild.roles.find (r => r.name === "muted");
+  
+  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
+
+  await toMute.removeRole(role)
+  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
+
+  return;
+
+  }
 
 client.login(process.env.BOT_TOKEN)
