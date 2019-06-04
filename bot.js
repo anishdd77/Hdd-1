@@ -6,96 +6,17 @@ client.on('ready', () => {
   console.log(`Welcome in servr Anis ${client.user.tag}!`);
 });
 var prefix = '-'
-
 client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id !== "460389855382470662") return;
-
-  
-  if (message.content.startsWith(prefix + 'setwatch')) {
-  client.user.setActivity(argresult, {type: 'WATCHING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Watch Now: **${argresult}`)
-} 
-
- 
-  if (message.content.startsWith(prefix + 'setlis')) {
-  client.user.setActivity(argresult, {type: 'LISTENING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
-} 
-
-
-if (message.content.startsWith(prefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.sendMessage(`Username Changed To **${argresult}**`)
-  return message.reply("You Can change the username 2 times per hour");
-} 
-
-if (message.content.startsWith(prefix + 'setavatar')) {
-  client.user.setAvatar(argresult);
-   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
-}
-
-if (message.content.startsWith(prefix + 'setT')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/peery13");
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Streaming: **${argresult}`)
-} 
-if (message.content.startsWith(prefix + 'setgame')) {
-  client.user.setGame(argresult);
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Playing: **${argresult}`)
-} 
-
-
-
-});
-const moment = require('moment')
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-client.on('ready', function(){
-    var ms = 100000 ;
-    var setGame = [`[ -help ]`];   
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
-    }, ms);100000
-
-});
-client.on("message", message => {
-    if (message.content === (prefix + "help")) {
-     const embed = new Discord.RichEmbed() 
-         .setColor("#580e6b")
-         .setThumbnail(message.author.avatarURL)
-         .setDescription(`**
-		 ━━━┳╮╱╱╱╱╱╱╱ ╭━━╮╱╱╱╱╭╮
-         ┃╭━╮┃┃╱╱╱╱╱╱╱ ┃╭╮┃╱╱╱╭╯╰╮
-         ┃╰━╯┃┃╭╮╭┳━━╮ ┃╰╯╰┳━━╋╮╭╯
-         ┃╭━━┫┃┃┃┃┃━━┫ ┃╭━╮┃╭╮┃┃┃
-         ┃┃╱╱┃╰┫╰╯┣━━┃ ┃╰━╯┃╰╯┃┃╰╮
-╰        ╯╱╱╰━┻━━┻━━╯ ╰━━━┻━━╯╰━╯
-        
-		 ------------------------------
-		 -🚀 سرعه اتصال ممتازه
-         -😎 سهل الاستخدام 
-         -⚠ صيانه كل يوم
-         -💵 مجاني بل كامل 
-         -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-		     ¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
-         ------------------------------
-		      💎『اوامر عامة』💎
+if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
+    let pages = [`
+***__??? ?? ?????__***
+**
+:gem:  ????? ??? ???? ????? ???? ? ?????
+ ?:rocket: ????? ???? ????? 24 ????
+**
+        ***__General orders__***
+**
+  💎『اوامر عامة』💎
          -id : 『عرض ملفك الشخصي』
          -ask : 『البوت يسئلك اسئلة』
          -server : 『معلومات عن السيرفر』
@@ -109,8 +30,12 @@ client.on("message", message => {
 		 -calculate / حاسبة』
 		 -say/يكرر الكلام الي تكتبو
 		 -skin name in minecraft لإضهار سكنك في ماين طرافت
-         ------------------------------
-		    👑『اوامر ادارية』👑
+**
+  `
+,`
+        ***__Admin orders__***
+**
+ 👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
          -kick : 『لتعطي شخص كيك』
          -clear : 『لمسح الشات برقم』
@@ -128,17 +53,61 @@ client.on("message", message => {
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
          -help : عرض هذه الرسالة
-         ------------------------------
-		       ***Games Commands***
+**
+  `
+,`
+        ***__Games orders__***
+**
+***Games Commands***
 		 -يخيرك بين شي وشي / لو خيروك』
 		 -لعبه صراحه/صراحه』
 		 -xo  لعبة اكس او
-		 
-                                                **
-         
-       **  `)
-   message.author.sendEmbed(embed)
+**
    
+`]
+    let page = 1;
+ 
+    let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setFooter(`Page ${page} of ${pages.length}`)
+    .setDescription(pages[page-1])
+ 
+    message.author.sendEmbed(embed).then(msg => {
+ 
+        msg.react('?').then( r => {
+            msg.react('?')
+ 
+ 
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
+ 
+ 
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+        const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+ 
+ 
+ 
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+     
+      page++;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        })
+    })
+    }
+});
+
+
    }
    });  
 client.on('message', message => {
