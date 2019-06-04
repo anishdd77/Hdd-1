@@ -109,7 +109,6 @@ client.on("message", message => {
 		 -calculate / حاسبة』
 		 -say/يكرر الكلام الي تكتبو
 		 -skin name in minecraft لإضهار سكنك في ماين طرافت
-		 ${prefix}speed / اسرع كتابة
          ------------------------------
 		    👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
@@ -137,7 +136,22 @@ client.on("message", message => {
 		 
                                                 **
          
-     let page = 1;
+       **  `)
+   message.author.sendEmbed(embed)
+   
+   }
+   });  
+client.on('message', message => {
+     if (message.content === (prefix + "help")) {
+	  message.react("📩")
+     let embed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#8650a7")
+  .addField("Done" , " تــــم ارســالك في الخــاص")
+  message.channel.sendEmbed(embed);
+    }
+});
+let page = 1;
 
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
@@ -227,19 +241,6 @@ client.on('message', async message => {
     setTimeout(() => {
        coolDown.remove(message.author.id);
     },86400000);
-    }
-});
-   
-   }
-   });  
-client.on('message', message => {
-     if (message.content === (prefix + "help")) {
-	  message.react("📩")
-     let embed = new Discord.RichEmbed()
-  .setAuthor(message.author.username)
-  .setColor("#8650a7")
-  .addField("Done" , " تــــم ارســالك في الخــاص")
-  message.channel.sendEmbed(embed);
     }
 });
 client.on('message', message => {
