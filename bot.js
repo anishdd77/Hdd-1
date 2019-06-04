@@ -1,22 +1,43 @@
-var Discord = require('discord.js');
-var fs = require('fs');
-var client = new Discord.Client();
+const Discord = require('discord.js');
+const devs = ['530403193130057740'];
+const db = require('quick.db');
+const premium = ['530403193130057740']
+const client = new Discord.Client();   
+const bot = new Discord.Client();   
+const giphy = require('giphy-api')();    
+const googl = require('goo.gl');  
+const translate = require('google-translate-api');   
+const fs = require("fs"); 
+const canvas = require("canvas");
+const getYoutubeID = require('get-youtube-id'); 
+const moment = require("moment");  
+const { Client, Util } = require('discord.js');  
+const UserBlocked = new Set(); 
+const jimp = require('jimp');   
+const math = require('math-expression-evaluator'); 
+const stripIndents = require('common-tags').stripIndents;
+const figlet = require('figlet');
+const google = require('google-it'); 
+const queue = new Map(); 
+const zalgo = require('zalgolize');   
+const fetchVideoInfo = require('youtube-info');
+const YouTube = require('simple-youtube-api');
+const ytdl = require('ytdl-core');
+const youtube = new YouTube("AIzaSyCQapWI28_Um0n4AEGNVw7l3QZqhQF0cFs");
+const sql = require("sqlite");
+const dateFormat = require('dateformat'); 
+const pretty = require('pretty-ms') 
+const prefix = '$';
+var table = require('table').table
+var ti={}  
+,spee={}
+,attentions={};
 
-client.on('ready', () => {
-  console.log(`Welcome in servr Anis ${client.user.tag}!`);
-});
-var prefix = '-'
 client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
-    let pages = [`
-***__??? ?? ?????__***
+if (message.content.startsWith(prefix + 'help')) { 
+    let pages = [`.
+        ***💎『اوامر عامة』💎***
 **
-:gem:  ????? ??? ???? ????? ???? ? ?????
- ?:rocket: ????? ???? ????? 24 ????
-**
-        ***__General orders__***
-**
-  💎『اوامر عامة』💎
          -id : 『عرض ملفك الشخصي』
          -ask : 『البوت يسئلك اسئلة』
          -server : 『معلومات عن السيرفر』
@@ -30,12 +51,12 @@ if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
 		 -calculate / حاسبة』
 		 -say/يكرر الكلام الي تكتبو
 		 -skin name in minecraft لإضهار سكنك في ماين طرافت
+		 ${prefix}speed / اسرع كتابة
 **
   `
 ,`
-        ***__Admin orders__***
+        ***👑『اوامر ادارية』👑***
 **
- 👑『اوامر ادارية』👑
          -ban : 『لتعطي شخص باند』
          -kick : 『لتعطي شخص كيك』
          -clear : 『لمسح الشات برقم』
@@ -49,44 +70,46 @@ if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
 		 -ce لمح لشات بعدد
 		 -role @user <rank> / لأعطاء رتبة لعضو معين
 		 -roleremove @user <rank> / لازالة الرتبة من شخص معين
-          ----------------------
+		   ----------------------
          -guilds : عدد سيرفر البوت
          -inv : دعوه البوت الى سيرفر (غير ماتحة)
          -help : عرض هذه الرسالة
+         ------------------------------
 **
-  `
-,`
-        ***__Games orders__***
-**
-***Games Commands***
-		 -يخيرك بين شي وشي / لو خيروك』
+   `,`
+**      
+         ***__اوامــر الالعاب__***
+         -يخيرك بين شي وشي / لو خيروك』
 		 -لعبه صراحه/صراحه』
 		 -xo  لعبة اكس او
 **
-   
+   `,`
+**  
+         ***anis_malumyatاتمنى ان البوت اعجبكم بون ل***
+**    
 `]
     let page = 1;
- 
+
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setFooter(`Page ${page} of ${pages.length}`)
     .setDescription(pages[page-1])
- 
+
     message.author.sendEmbed(embed).then(msg => {
- 
-        msg.react('?').then( r => {
-            msg.react('?')
- 
- 
-        const backwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
-        const forwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
- 
- 
+
+        msg.react('◀').then( r => {
+            msg.react('▶')
+
+
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+
+
         const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
         const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
- 
- 
- 
+
+
+
         backwards.on('collect', r => {
             if (page === 1) return;
             page--;
@@ -96,7 +119,7 @@ if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
         })
         forwards.on('collect', r => {
             if (page === pages.length) return;
-     
+      
       page++;
             embed.setDescription(pages[page-1]);
             embed.setFooter(`Page ${page} of ${pages.length}`);
@@ -106,8 +129,6 @@ if (message.content.startsWith(prefix + 'help')) { anishdd - [ anis_malumyat]
     })
     }
 });
-
-
    }
    });  
 client.on('message', message => {
