@@ -986,21 +986,6 @@ client.on('message' , message => {
  message.delete(); 
 };     
 });
-
-client.on("message", (message) => {
-                        if (message.channel.type === "dm") {
-                    if (message.author.id === client.user.id) return;
-                    let yumz = new Discord.RichEmbed()
-                                .setTimestamp()
-                                .setTitle("رسالة مباشرة إلى بوت")
-                                .addField(`أرسلت بواسطة:`, `<@${message.author.id}>`)
-                                .setColor("RANDOM")
-                                .setThumbnail(message.author.displayAvatarURL)
-                                .addField(`رسالة: `, `\n\n\`\`\`${message.content}\`\`\``)
-                                .setFooter(`Anis-hdd ©`)
-                            client.users.get("484326398568300555").send(yumz)
-                        }
-            });
 			
 			const replyForMention = [   "**Hi For More Informations Type ||*-help*||♥**",  ]
 client.on('message', message=> {
