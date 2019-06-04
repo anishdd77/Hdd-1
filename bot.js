@@ -137,12 +137,7 @@ client.on("message", message => {
 		 
                                                 **
          
-       **  `)
-   message.author.sendEmbed(embed)
-   
-   }
-   });  
-     let page = 1;
+        let page = 1;
 
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
@@ -183,6 +178,7 @@ client.on("message", message => {
     })
     }
 }); 
+   
 client.on('message', message => {
      if (message.content === (prefix + "help")) {
 	  message.react("📩")
