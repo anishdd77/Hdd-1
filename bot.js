@@ -256,6 +256,36 @@ client.on('message', function(msg) {
       msg.channel.send({embed:embed});
     }
 });
+
+console.log("Welcome Again !");
+
+client.on('ready', () => {
+    client.user.setStatus('idle');
+});
+
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`**
+      حياك الله ي بعد راسي
+       خش بتنورنا فعاليات وكل شيء حلو موجود !
+        ي بعد عيني الرابط تحت
+         Spring SERVER
+
+                                 [ https://discord.gg/Yt7NYZ ] **`)
+}).catch(console.error)
+})
+
+client.on("guildMemberRemove", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`**
+      حياك الله ي بعد راسي
+       خش بتنورنا فعاليات وكل شيء حلو موجود !
+        ي بعد عيني الرابط تحت
+         Spring SERVER
+
+                                 [ https://discord.gg/Yt7NYZ ] **`)
+}).catch(console.error)
+})
  
 client.on('message', message => {
     if (message.content.startsWith("-avatar")) {
@@ -1340,45 +1370,6 @@ var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اس
 if (!channel) return;
 channel.send({embed : embed});
 });
-client.on('message', async message => {
-            if(message.content.includes('discord.gg')){ 
-                if(message.member.hasPermission("MANAGE_GUILD")) return;
-        if(!message.channel.guild) return;
-        message.delete()
-          var command = message.content.split(" ")[0];
-    let muterole = message.guild.roles.find(`name`, "اسكت");//اسم رتب ميوت
-    if(!muterole){
-      try{
-        muterole = await message.guild.createRole({
-          name: "اسكت",//اسم رتب ميوت
-          color: "#000000",
-          permissions:[]
-        })
-        message.guild.channels.forEach(async (channel, id) => {
-          await channel.overwritePermissions(muterole, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false
-          });
-        });
-      }catch(e){
-        console.log(e.stack);
-      }
-    }
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
-     message.member.addRole(muterole);
-    const embed500 = new Discord.RichEmbed()
-      .setTitle("Muted Ads")
-            .addField(`**  لقد تم اسكاتك **` , `**Reason : تقاسم آخر خلاف الفتنة**`)
-            .setColor("c91616")
-            .setThumbnail(`${message.author.avatarURL}`)
-            .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter(`${message.guild.name} `)
-     message.channel.send(embed500)
-     message.author.send('` انت معاقب ميوت شاتي بسبب نشر سرفرات ان كان عن طريق الخطا من فضلك تكلم مع الادارة `');//رسائل الى بعد ميوت فى خاص عضو
-   
-       
-    }
-})
 
 client.on('message', message => {
     if (message.content.startsWith(prefix + 'ce')) {
@@ -1757,25 +1748,43 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
   }
 
 });
-client.on('message', function(message) { 
-    if (!message.member.hasPermissions(['ADMINISTRATOR'])){ 
-            let command = message.content.split(" ")[0]; 
-        if(message.content.includes('discord.gg')){ 
-        message.reply (' ') 
-           if(!message.channel.guild) return message.reply('** This command only for servers**'); 
-     message.member.addRole(message.guild.roles.find('name', 'Muted'));  
-    const embed500 = new Discord.RichEmbed() 
-      .setTitle("❌ | تمت معاقبتك") 
-            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ان كأن هاذه الميوت عن طريق الخطأ تواصل مع احد اعضاء الادارة**`) 
-      .addField(`Snow`,`Codes`)
-            .setColor("c91616")
-            .setThumbnail(`${message.author.avatarURL}`) 
-            .setAuthor(message.author.username, message.author.avatarURL) 
-        .setFooter(`${message.guild.name} Server`)
-     message.channel.send(embed500) 
-    
-        
+client.on('message', async message => {
+            if(message.content.includes('discord.gg')){ 
+                if(message.member.hasPermission("MANAGE_GUILD")) return;
+        if(!message.channel.guild) return;
+        message.delete()
+          var command = message.content.split(" ")[0];
+    let muterole = message.guild.roles.find(`name`, "اسكت");//اسم رتب ميوت
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "اسكت",//اسم رتب ميوت
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
     }
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(muterole);
+    const embed500 = new Discord.RichEmbed()
+      .setTitle("Muted Ads")
+            .addField(`**  لقد تم اسكاتك **` , `**Reason : تقاسم آخر خلاف الفتنة**`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} `)
+     message.channel.send(embed500)
+     message.author.send('` انت معاقب ميوت شاتي بسبب نشر سرفرات ان كان عن طريق الخطا من فضلك تكلم مع الادارة `');//رسائل الى بعد ميوت فى خاص عضو
+   
+       
     }
 })
 
