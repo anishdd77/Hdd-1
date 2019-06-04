@@ -8,82 +8,149 @@ client.on('ready', () => {
 var prefix = '-'
 
 client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) { 
-    let pages = [`.
-        ***💎『اوامر عامة』💎***
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+  if (message.author.id !== "460389855382470662") return;
+
+  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type: 'WATCHING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Watch Now: **${argresult}`)
+} 
+
+ 
+  if (message.content.startsWith(prefix + 'setlis')) {
+  client.user.setActivity(argresult, {type: 'LISTENING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
+} 
+
+
+if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.sendMessage(`Username Changed To **${argresult}**`)
+  return message.reply("You Can change the username 2 times per hour");
+} 
+
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
+}
+
+if (message.content.startsWith(prefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/peery13");
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Streaming: **${argresult}`)
+} 
+if (message.content.startsWith(prefix + 'setgame')) {
+  client.user.setGame(argresult);
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Playing: **${argresult}`)
+} 
+
+
+
+});
+const moment = require('moment')
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+client.on('ready', function(){
+    var ms = 100000 ;
+    var setGame = [`[ -help ]`];   
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+        if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
+    }, ms);100000
+
+});
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'help')) { //DiamondCodes - [ X_KillerYT ]
+    let pages = [`
+***__??? ?? ?????__***
 **
-         -id : 『عرض ملفك الشخصي』
-         -ask : 『البوت يسئلك اسئلة』
-         -server : 『معلومات عن السيرفر』
-		 -ping 『لمعرفه سرعه البوت』
-		 -servers 『علشان تشوف البوت بكم سيرفر اون لاين 』
-		 -bot/ معلومات عن البوت』
-		 -avatar/ يعرض صورتك او صوره شخص』
-		 -support/ سيرفر الدعم القني و المساعده』
-		 -roll <number> ➾ role
-		 -draw / يكرر الكلام في صوره』
-		 -calculate / حاسبة』
-		 -say/يكرر الكلام الي تكتبو
-		 -skin name in minecraft لإضهار سكنك في ماين طرافت
-		 ${prefix}speed / اسرع كتابة
+:gem:  ????? ??? ???? ????? ???? ? ?????
+ ?:rocket: ????? ???? ????? 24 ????
+**
+        ***__General orders__***
+**
+??serv /???? ?? ??????? ?? ????????
+??serv2 / ???? ?? ??????? ?? ??????? ( ????? ?????? ) ??????????
+??id / ???? ?? ??????? ????
+??myroles / ????? ???? ???? ??????? ?????????
+??id / ???? ?? ??????? ????
+??link / ????? ?????? ( ???? ) ?????
+??inv / ????? ????? ??? ???????
+??support / ????? ?????????
+??cmind / ?????? ?? ??? ????? ???? ?????
+??servavatar / ????? ???? ????????
+??count / ????? ??? ??????? ?????????
+??avatar / ????? ???? ??? ?
+??bot-info / ????? ??????? ?? ????? ?
+??report / ???? ???? ??? ??? ?
+??servers / ????? ??? ????????? ???? ???? ??? ????? ?
+??myid / ?????? ?????? ????? ?? ?
 **
   `
 ,`
-        ***👑『اوامر ادارية』👑***
+        ***__Admin orders__***
 **
-         -ban : 『لتعطي شخص باند』
-         -kick : 『لتعطي شخص كيك』
-         -clear : 『لمسح الشات برقم』
-         -createroles : 『عمل رتب متكاملة للسيرفر』
-         -voicesetup : 『انشاء روم فويس اونلاين
-         لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
-		 -color 50 /انشاء 50 لون』
-		 -mute < mention > ➾ اسكات عضو
-		 -unmute <mention> ➾ فك الاسكات من العضو
-		 -bc  『خيارات البرودكاست』
-		 -ce لمح لشات بعدد
-		 -role @user <rank> / لأعطاء رتبة لعضو معين
-		 -roleremove @user <rank> / لازالة الرتبة من شخص معين
-		   ----------------------
-         -guilds : عدد سيرفر البوت
-         -inv : دعوه البوت الى سيرفر (غير ماتحة)
-         -help : عرض هذه الرسالة
-         ------------------------------
+??clear / ???? ????? ?
+??mc / ???? ?????  ?
+??unmc / ???? ????? ?
+??bc / ?????? ????? ????? ????? ??????? ?
+??kick / ???? ??? ?? ???????? ?
+??ban / ?????? ??? ???? ?? ???????? ?
+??mute / ?????? ??? ???? ?
+??unmute / ??? ???? ??? ?
+??ct / ?????? ??? ????? ?
+??cv / ?????? ??? ???? ?
+??rolebc / ???? ???? ????? ?
 **
-   `,`
-**      
-         ***__اوامــر الالعاب__***
-         -يخيرك بين شي وشي / لو خيروك』
-		 -لعبه صراحه/صراحه』
-		 -xo  لعبة اكس او
+  `
+,`
+        ***__Games orders__***
 **
-   `,`
-**  
-         ***anis_malumyatاتمنى ان البوت اعجبكم بون ل***
-**    
+?????? ????? / ????? ?
+?????? ?? ???? / ?? ???? ?
+?????? ?? ????? / ?? ??????
+??rps / ???? ???? ???? ??? ?
+??????? ????? ???? ???? /  ???? ???? ?
+**
+   
 `]
     let page = 1;
-
+ 
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setFooter(`Page ${page} of ${pages.length}`)
     .setDescription(pages[page-1])
-
+ 
     message.author.sendEmbed(embed).then(msg => {
-
-        msg.react('◀').then( r => {
-            msg.react('▶')
-
-
-        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
-        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
-
-
+ 
+        msg.react('?').then( r => {
+            msg.react('?')
+ 
+ 
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
+ 
+ 
         const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
         const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
-
-
-
+ 
+ 
+ 
         backwards.on('collect', r => {
             if (page === 1) return;
             page--;
@@ -93,7 +160,7 @@ if (message.content.startsWith(prefix + 'help')) {
         })
         forwards.on('collect', r => {
             if (page === pages.length) return;
-      
+     
       page++;
             embed.setDescription(pages[page-1]);
             embed.setFooter(`Page ${page} of ${pages.length}`);
@@ -103,8 +170,7 @@ if (message.content.startsWith(prefix + 'help')) {
     })
     }
 });
-   }
-   });  
+ 
 client.on('message', message => {
      if (message.content === (prefix + "help")) {
 	  message.react("📩")
