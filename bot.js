@@ -256,36 +256,6 @@ client.on('message', function(msg) {
       msg.channel.send({embed:embed});
     }
 });
-
-console.log("Welcome Again !");
-
-client.on('ready', () => {
-    client.user.setStatus('idle');
-});
-
-client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`**
-      حياك الله ي بعد راسي
-       خش بتنورنا فعاليات وكل شيء حلو موجود !
-        ي بعد عيني الرابط تحت
-         Spring SERVER
-
-                                 [ https://discord.gg/Yt7NYZ ] **`)
-}).catch(console.error)
-})
-
-client.on("guildMemberRemove", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`**
-      حياك الله ي بعد راسي
-       خش بتنورنا فعاليات وكل شيء حلو موجود !
-        ي بعد عيني الرابط تحت
-         Spring SERVER
-
-                                 [ https://discord.gg/Yt7NYZ ] **`)
-}).catch(console.error)
-})
  
 client.on('message', message => {
     if (message.content.startsWith("-avatar")) {
@@ -1787,7 +1757,6 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
   }
 
 });
-
 client.on('message', function(message) { 
     if (!message.member.hasPermissions(['ADMINISTRATOR'])){ 
             let command = message.content.split(" ")[0]; 
@@ -1809,5 +1778,36 @@ client.on('message', function(message) {
     }
     }
 })
+
+console.log("Welcome Again !");
+
+client.on('ready', () => {
+    client.user.setStatus('idle');
+});
+
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`**
+      حياك الله ي بعد راسي
+       خش بتنورنا فعاليات وكل شيء حلو موجود !
+        ي بعد عيني الرابط تحت
+         Spring SERVER
+
+                                 [ https://discord.gg/Yt7NYZ ] **`)
+}).catch(console.error)
+})
+
+client.on("guildMemberRemove", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`**
+      حياك الله ي بعد راسي
+       خش بتنورنا فعاليات وكل شيء حلو موجود !
+        ي بعد عيني الرابط تحت
+         Spring SERVER
+
+                                 [ https://discord.gg/Yt7NYZ ] **`)
+}).catch(console.error)
+})
+
 
 client.login(process.env.BOT_TOKEN)
