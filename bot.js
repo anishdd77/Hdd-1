@@ -122,7 +122,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴${prefix}schannel / اضهار الشات المخفية
 ----------------------
 ✴#guilds : عدد سيرفر البوت
-✴#inv : دعوه البوت الى سيرفر (غير ماتحة)
+✴#inv : دعوه البوت الى سيرفر 
 ✴#help : عرض هذه الرسالة
 **
   `
