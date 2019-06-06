@@ -1376,7 +1376,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+        
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1394,7 +1394,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+         
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1412,7 +1412,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1431,7 +1431,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1450,7 +1450,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+        
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1468,7 +1468,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1486,7 +1486,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1504,7 +1504,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+      
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1521,7 +1521,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc"
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1538,7 +1538,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+        
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1557,7 +1557,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+         
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1576,7 +1576,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+         
         }
       }}).then(msg => {msg.delete(4000)});
                           }
@@ -1593,7 +1593,7 @@ client.on('message', message => {
         color: 0x06DF00,
         description: "مَّا يَلْفِظُ مِن قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ ",
         footer: {
-          text: "By TitanMc."
+          
         }
       }}).then(msg => {msg.delete(3000)});
                           }
