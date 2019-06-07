@@ -2087,7 +2087,7 @@ client.on('ready', () => {
 console.log(`THIS Script By :〖Anis`)
 console.log(`----------------`); 
 console.log(`ON ${client.guilds.size} Servers '      Script By :Anis' `);
-client.user.setActivity("#help #inv-  لو تبي بلاينج امسح السطر في الاعال و ثم الامر مثال",{type: 'PLAYING'});
+client.user.setActivity("#help #inv",{type: 'PLAYING'});
 });
 
 client.on('messageDelete', async message => {
