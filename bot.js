@@ -101,6 +101,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#skin =name in minecraft لإضهار سكنك في ماين طرافت 
 ✴#roles/يعرض لك كل الرانكات بالسيرفر بشكل جميل
 ✴#members معلومات عن الاعضاء
+✴${prefix}name يكتب اي اسم في صورة
 
 **
   `
@@ -1941,7 +1942,7 @@ const zead = [
    let args = message.content.split(" ").slice(1);
  
  
- if(command == "tag") {
+ if(command == "name") {
      var Canvas = require('canvas')
    , Image = new Canvas.Image
    , canvas = new Canvas(450, 170)
