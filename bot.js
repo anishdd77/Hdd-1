@@ -1950,7 +1950,7 @@ const zead = [
  
  });
   
-let vipKeys = JSON.parse(fs.readFileSync("./vipKeys.json", "utf8"));
+let HĕľPĕřKeys = JSON.parse(fs.readFileSync("./vipKeys.json", "utf8"));
 client.on("message", msg=>{
 let id = "484326398568300555"; // ايديك
 let role = "HĕľPĕř"; // اسم رتبة الفيب
@@ -2025,20 +2025,20 @@ if(cmd === `${prefix}used`){
 .setColor("#42f4f4")
   msg.reply(embed).then( msgs =>{
   if(vipKeys[args]){
-    let hav = msg.member.roles.find(`name`, vipKeys[args].name);
+    let hav = msg.member.roles.find(`name`, HĕľPĕřKeys[args].name);
     if(hav){
     let embed = new Discord.RichEmbed()
-    .setTitle(`:x: - **انت تمتلك هذه الرتبة مسبقًا**  \`${vipKeys[args].name}\``)
+    .setTitle(`:x: - **انت تمتلك هذه الرتبة مسبقًا**  \`${HĕľPĕřKeys[args].name}\``)
     .setColor("#42f4f4")
     msgs.edit(embed)
     return
     }
     let embed = new Discord.RichEmbed()
-    .setTitle(`:tada: - **مبروك تم اعطائك رتبة** \`${vipKeys[args].name}\``)
+    .setTitle(`:tada: - **مبروك تم اعطائك رتبة** \`${HĕľPĕřKeys[args].name}\``)
     .setColor("#42f4f4")
     msgs.edit(embed)
-    msg.member.addRole(vipKeys[args]);
-    delete vipKeys[args]
+    msg.member.addRole(HĕľPĕřKeys[args]);
+    delete HĕľPĕřKeys[args]
     save()
   }else{
     let embed = new Discord.RichEmbed()
@@ -2055,7 +2055,7 @@ function genKey(msg,role){
   for (var y = 0; y < 16; y++) {   ///16
     gift +=  `${randomkeys.charAt(Math.floor(Math.random() * randomkeys.length))}`;
   }
-  vipKeys[gift] = role;
+  HĕľPĕřKeys[gift] = role;
   let embed = new Discord.RichEmbed()
   .setColor("#42f4f4")
   .setTitle(`:ok_hand: - **تم ارسآل الكود على الخاص**`);
@@ -2064,7 +2064,7 @@ function genKey(msg,role){
   .setAuthor(msg.author.username, msg.author.displayAvatarURL)
   .setThumbnail(msg.author.avatarURL)
   .addField("**Key Of Gift**", gift,true)
-  .addField("Role",vipKeys[gift].name,true)
+  .addField("Role",HĕľPĕřKeys[gift].name,true)
   .addField("This Key Made by", msg.author, true)
   .addField("The Room", msg.channel , true)
   .setTimestamp()
@@ -2074,7 +2074,7 @@ function genKey(msg,role){
 }
  
 function save(){
-  fs.writeFile("./vipKeys.json", JSON.stringify(vipKeys), (err) => {
+  fs.writeFile("./HĕľPĕřKeys.json", JSON.stringify(HĕľPĕřKeys), (err) => {
     if (err) console.log(err)
   });
  
