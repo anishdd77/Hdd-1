@@ -1952,7 +1952,7 @@ const zead = [
 
 client.on("message", msg=>{
 let id = "484326398568300555"; // ايديك
-let role = "VIP"; // اسم رتبة الفيب
+let role = "HĕľPĕř"; //تبة الفيب
 let Price = 10; // السعر
 let Price2 = Math.floor(Price-(Price*(1/100)));
 if(!Price || Price < 1) return;
@@ -1965,8 +1965,8 @@ let embedvip = new Discord.RichEmbed()
 .setAuthor(msg.author.username, msg.author.displayAvatarURL)
 .setThumbnail(msg.author.avatarURL)
 .setTitle("**اختر الطريقة المناسبة لك**")
-.addField("ل شراء الفي اي بي لنفسك","🔱",true )
-.addField("ل شراء الفي اي بي ك هدية","🎁",true)
+.addField("ل شراءالهلبر لنفسك","🔱",true )
+.addField("ل شراالهلبر ك هدية","🎁",true)
 .setTimestamp()
 .setFooter(client.user.username,client.user.displayAvatarURL);
 msg.channel.send(embedvip).then(msgs2 =>{
