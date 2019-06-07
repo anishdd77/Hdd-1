@@ -124,6 +124,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#roleremove @user <rank> / لازالة الرتبة من شخص معين
 ✴${prefix}hchannel / اخفاء الشات
 ✴${prefix}schannel / اضهار الشات المخفية
+✴${prefix}ROOM لعمل روم كتابي
 ----------------------
 ✴#guilds : عدد سيرفر البوت
 ✴#inv : دعوه البوت الى سيرفر 
@@ -2151,6 +2152,15 @@ client.on('message', message => {
     return message.reply(`** لايمكنك نشر اروابط في هذا اسرفر **`)
     }
 
+});
+
+
+client.on('message', message => {
+if (message.content.startsWith(prefix+"ROOM")) {
+    var args = message.content.split(" ").slice(1);
+    var argrst = args.join(' ');
+                message.guild.createChannel(`${argrst}`, 'text')
+      }
 });
 
 client.login(process.env.BOT_TOKEN)
