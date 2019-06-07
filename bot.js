@@ -125,7 +125,8 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#roleremove @user <rank> / لازالة الرتبة من شخص معين
 ✴${prefix}hchannel / اخفاء الشات
 ✴${prefix}schannel / اضهار الشات المخفية
-✴${prefix}ROOM لعمل روم كتابي
+✴${prefix}ct لعمل روم كتابي
+✴${prefix}cv وم كتابي صوتي
 ----------------------
 ✴#guilds : عدد سيرفر البوت
 ✴#inv : دعوه البوت الى سيرفر 
@@ -2174,12 +2175,27 @@ reaction2.on("collect", r => {
 }
 });
 
-client.on('message', message => {
-if (message.content.startsWith(prefix+"room")) {
-    var args = message.content.split(" ").slice(1);
-    var argrst = args.join(' ');
-                message.guild.createChannel(`${argrst}`, 'text')
-      }
+client.on("message", (message) => {
+let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+if (command == "ct") {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'text');
+message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
+
+}
+});
+
+client.on("message", (message) => {
+     let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+if (command == "cv") {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'voice');
+message.channel.sendMessage('تم انشاء روم صوتى')
+}
 });
 
 client.login(process.env.BOT_TOKEN)
