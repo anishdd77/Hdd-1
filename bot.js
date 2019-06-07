@@ -101,7 +101,8 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#skin =name in minecraft لإضهار سكنك في ماين طرافت 
 ✴#roles/يعرض لك كل الرانكات بالسيرفر بشكل جميل
 ✴#members معلومات عن الاعضاء
-✴${prefix}name يكتب اي اسم في صورة
+✴${prefix}pic يكتب اي اسم في صورة
+✴${prefix}tag  يكتب لك الكلمة بشكل جميل وكبير
 
 **
   `
@@ -1942,7 +1943,7 @@ const zead = [
    let args = message.content.split(" ").slice(1);
  
  
- if(command == "name") {
+ if(command == "pic") {
      var Canvas = require('canvas')
    , Image = new Canvas.Image
    , canvas = new Canvas(450, 170)
@@ -1965,6 +1966,17 @@ const zead = [
  }
  
  });
+ client.on('message', message => {
+if (message.content.startsWith(prefix + 'tag')) {
+    let args = message.content.split(" ").slice(1);
+if(!args[0]) return message.reply('مرجو كتابة نص الدي تريد');  
+
+    figlet(args.join(" "), (err, data) => {
+              message.channel.send("```" + data + "```")
+           })
+
+}
+});
 
 
 client.login(process.env.BOT_TOKEN)
