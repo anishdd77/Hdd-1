@@ -2173,4 +2173,13 @@ reaction2.on("collect", r => {
 })
 }
 });
+
+client.on('message', message => {
+if (message.content.startsWith(prefix+"room")) {
+    var args = message.content.split(" ").slice(1);
+    var argrst = args.join(' ');
+                message.guild.createChannel(`${argrst}`, 'text')
+      }
+});
+
 client.login(process.env.BOT_TOKEN)
