@@ -633,7 +633,7 @@ client.on('guildMemberRemove', member => {
     channel.send({embed : embed});
     })
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","✨щéļḉσᶆé✨")); //اسم الرتبة
+    member.addRole(member.guild.roles.find("name","щéļḉσᶆé")); //اسم الرتبة
     });
 	
 
@@ -1326,7 +1326,7 @@ client.on('guildMemberAdd', member => {
     .setDescription('**# __welcome__ **to ** ~~server~~**')// كلام ترحيب بعضو
     .setColor('RANDOM')
     .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
-var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
+var channel =member.guild.channels.find('name', 'щéļḉσᶆé')// اسم شات ترحيب
 if (!channel) return;
 channel.send({embed : embed});
 });
@@ -1635,7 +1635,7 @@ client.on('message', message => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const xkiller = member.guild.channels.find("name", "✨щéļḉσᶆé✨");
+    const xkiller = member.guild.channels.find("name", "щéļḉσᶆé");
      xkiller.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
   });
 });
@@ -2079,5 +2079,24 @@ function save(){
   });
  
 }
+
+client.on('ready', () => {
+    console.log(`----------------`);
+console.log(`THIS Script By :〖Anis`)
+console.log(`----------------`); 
+console.log(`ON ${client.guilds.size} Servers '      Script By :Anis' `);
+client.user.setActivity("#help #inv-  لو تبي بلاينج امسح السطر في الاعال و ثم الامر مثال",{type: 'PLAYING'});
+});
+
+client.on('messageDelete', async message => {
+  let channel = (`<#${message.channel}${message.channel.discriminator}`)
+var embed = new Discord.RichEmbed()
+.setColor('#6c757d')
+.setTitle(`@${message.author.username}#${message.author.discriminator}`)
+.addField(`🗑 Message sent by @${message.author.username}#${message.author.discriminator}`, ("Message:", `\`\`\` ${message.content} \`\`\``) ,true)
+.setDescription(`Deleted in <#${message.channel.id}>`)
+.setFooter(`By: ${message.author.username} • Today at ${message.createdAt.getHours()}:${message.createdAt.getMinutes()}`)
+client.channels.find('name',"log").send(embed)
+});
 
 client.login(process.env.BOT_TOKEN)
