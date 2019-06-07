@@ -1949,11 +1949,10 @@ const zead = [
  }
  
  });
-  
-let HĕľPĕřKeys = JSON.parse(fs.readFileSync("./HĕľPĕřKeys.json", "utf8"));
+
 client.on("message", msg=>{
 let id = "484326398568300555"; // ايديك
-let role = "HĕľPĕř"; // اسم رتبة الفيب
+let role = "VIP"; // اسم رتبة الفيب
 let Price = 10; // السعر
 let Price2 = Math.floor(Price-(Price*(1/100)));
 if(!Price || Price < 1) return;
@@ -1966,8 +1965,8 @@ let embedvip = new Discord.RichEmbed()
 .setAuthor(msg.author.username, msg.author.displayAvatarURL)
 .setThumbnail(msg.author.avatarURL)
 .setTitle("**اختر الطريقة المناسبة لك**")
-.addField("ل شراءالهلبر لنفسك","🔱",true )
-.addField("ل شراء الهلبر ك هدية","🎁",true)
+.addField("ل شراء الفي اي بي لنفسك","🔱",true )
+.addField("ل شراء الفي اي بي ك هدية","🎁",true)
 .setTimestamp()
 .setFooter(client.user.username,client.user.displayAvatarURL);
 msg.channel.send(embedvip).then(msgs2 =>{
@@ -2024,21 +2023,21 @@ if(cmd === `${prefix}used`){
 .setTitle(`**جاري التحقق من الكود**`)
 .setColor("#42f4f4")
   msg.reply(embed).then( msgs =>{
-  if(HĕľPĕřKeys[args]){
-    let hav = msg.member.roles.find(`name`, HĕľPĕřKeys[args].name);
+  if(vipKeys[args]){
+    let hav = msg.member.roles.find(`name`, vipKeys[args].name);
     if(hav){
     let embed = new Discord.RichEmbed()
-    .setTitle(`:x: - **انت تمتلك هذه الرتبة مسبقًا**  \`${HĕľPĕřKeys[args].name}\``)
+    .setTitle(`:x: - **انت تمتلك هذه الرتبة مسبقًا**  \`${vipKeys[args].name}\``)
     .setColor("#42f4f4")
     msgs.edit(embed)
     return
     }
     let embed = new Discord.RichEmbed()
-    .setTitle(`:tada: - **مبروك تم اعطائك رتبة** \`${HĕľPĕřKeys[args].name}\``)
+    .setTitle(`:tada: - **مبروك تم اعطائك رتبة** \`${vipKeys[args].name}\``)
     .setColor("#42f4f4")
     msgs.edit(embed)
-    msg.member.addRole(HĕľPĕřKeys[args]);
-    delete HĕľPĕřKeys[args]
+    msg.member.addRole(vipKeys[args]);
+    delete vipKeys[args]
     save()
   }else{
     let embed = new Discord.RichEmbed()
@@ -2055,7 +2054,7 @@ function genKey(msg,role){
   for (var y = 0; y < 16; y++) {   ///16
     gift +=  `${randomkeys.charAt(Math.floor(Math.random() * randomkeys.length))}`;
   }
-  HĕľPĕřKeys[gift] = role;
+  vipKeys[gift] = role;
   let embed = new Discord.RichEmbed()
   .setColor("#42f4f4")
   .setTitle(`:ok_hand: - **تم ارسآل الكود على الخاص**`);
@@ -2064,7 +2063,7 @@ function genKey(msg,role){
   .setAuthor(msg.author.username, msg.author.displayAvatarURL)
   .setThumbnail(msg.author.avatarURL)
   .addField("**Key Of Gift**", gift,true)
-  .addField("Role",HĕľPĕřKeys[gift].name,true)
+  .addField("Role",vipKeys[gift].name,true)
   .addField("This Key Made by", msg.author, true)
   .addField("The Room", msg.channel , true)
   .setTimestamp()
@@ -2074,7 +2073,7 @@ function genKey(msg,role){
 }
  
 function save(){
-  fs.writeFile("./HĕľPĕřKeys.json", JSON.stringify(HĕľPĕřKeys), (err) => {
+  fs.writeFile("./vipKeys.json", JSON.stringify(vipKeys), (err) => {
     if (err) console.log(err)
   });
  
