@@ -1250,17 +1250,6 @@ if(!message.channel.guild) return message.channel.send('**هذا الأمر فق
 
 
 });
-client.on('guildMemberAdd', member => {
-    var embed = new Discord.RichEmbed()
-    .setThumbnail(member.user.avatarURL)
-  .addField("*** شكرا الانضمامك إلـينـا حبيبي ***" ,member.user.username )
-    .setDescription('**# __welcome__ **to ** ~~server~~**')// كلام ترحيب بعضو
-    .setColor('RANDOM')
-    .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
-var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
-if (!channel) return;
-channel.send({embed : embed});
-});
 
 client.on('message', message => {
     if (message.content.startsWith(prefix + 'ce')) {
@@ -2195,6 +2184,18 @@ client.on('message',async message => {
       });
     });
   }
+});
+
+client.on('guildMemberAdd', member => {
+    var embed = new Discord.RichEmbed()
+    .setThumbnail(member.user.avatarURL)
+  .addField("*** شكرا الانضمامك إلـينـا حبيبي ***" ,member.user.username )
+    .setDescription('**# ``-`` __W__elcome __T__ø server 🥂**')// كلام ترحيب بعضو
+    .setColor('RANDOM')
+    .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
+var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
+if (!channel) return;
+channel.send({embed : embed});
 });
 
 client.login(process.env.BOT_TOKEN)
