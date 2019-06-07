@@ -545,7 +545,7 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 client.on('guildMemberAdd', member => {
-     const welcomer =  member.guild.channels.find('name', 'щéļḉσᶆé');
+     const welcomer =  member.guild.channels.find('name', '✨щéļḉσᶆé✨');
     if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -630,12 +630,12 @@ client.on('guildMemberRemove', member => {
         .setColor('RED')
         .setFooter(`==== نــتــمــنــآ لــكــم آســتــمـــتــآع ====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
     
-    var channel =member.guild.channels.find('name', 'щéļḉσᶆé')
+    var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')
     if (!channel) return;
     channel.send({embed : embed});
     })
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","щéļḉσᶆé")); //اسم الرتبة
+    member.addRole(member.guild.roles.find("name","✨щéļḉσᶆé✨")); //اسم الرتبة
     });
 	
 
@@ -1328,7 +1328,7 @@ client.on('guildMemberAdd', member => {
     .setDescription('**# __welcome__ **to ** ~~server~~**')// كلام ترحيب بعضو
     .setColor('RANDOM')
     .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
-var channel =member.guild.channels.find('name', 'щéļḉσᶆé')// اسم شات ترحيب
+var channel =member.guild.channels.find('name', '✨щéļḉσᶆé✨')// اسم شات ترحيب
 if (!channel) return;
 channel.send({embed : embed});
 });
@@ -1637,7 +1637,7 @@ client.on('message', message => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const xkiller = member.guild.channels.find("name", "щéļḉσᶆé");
+    const xkiller = member.guild.channels.find("name", "✨щéļḉσᶆé✨");
      xkiller.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
   });
 });
