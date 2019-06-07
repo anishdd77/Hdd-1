@@ -1950,7 +1950,7 @@ const zead = [
  
  });
   
-let HĕľPĕřKeys = JSON.parse(fs.readFileSync("./vipKeys.json", "utf8"));
+let HĕľPĕřKeys = JSON.parse(fs.readFileSync("./HĕľPĕřKeys.json", "utf8"));
 client.on("message", msg=>{
 let id = "484326398568300555"; // ايديك
 let role = "HĕľPĕř"; // اسم رتبة الفيب
@@ -2024,7 +2024,7 @@ if(cmd === `${prefix}used`){
 .setTitle(`**جاري التحقق من الكود**`)
 .setColor("#42f4f4")
   msg.reply(embed).then( msgs =>{
-  if(vipKeys[args]){
+  if(HĕľPĕřKeys[args]){
     let hav = msg.member.roles.find(`name`, HĕľPĕřKeys[args].name);
     if(hav){
     let embed = new Discord.RichEmbed()
