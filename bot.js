@@ -102,6 +102,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#roles/يعرض لك كل الرانكات بالسيرفر بشكل جميل
 ✴#members معلومات عن الاعضاء
 ✴${prefix}pic يكتب اي اسم في صورة
+✴${prefix}لشراء رتبة هلبر اكتب #buy
 
 **
   `
