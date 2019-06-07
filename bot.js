@@ -103,6 +103,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#members معلومات عن الاعضاء
 ✴${prefix}pic يكتب اي اسم في صورة
 ✴${prefix}tag  يكتب لك الكلمة بشكل جميل وكبير
+✴${prefix}z5rf/يزخرف لك كلمة او جملة
 
 **
   `
@@ -1967,16 +1968,23 @@ const zead = [
  
  });
  client.on('message', message => {
-if (message.content.startsWith(prefix + 'tag')) {
-    let args = message.content.split(" ").slice(1);
-if(!args[0]) return message.reply('مرجو كتابة نص الدي تريد');  
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
 
-    figlet(args.join(" "), (err, data) => {
-              message.channel.send("```" + data + "```")
-           })
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
 
-}
+  let args = message.content.split(" ").slice(1);
+  
+ 
+
+if (command == "z5rf") {
+    let say = new Discord.RichEmbed()
+    .setTitle('Text emboss :')
+
+   message.reply(`\n ${zalgo(args.join(' '))}`);
+  }
+
 });
-
 
 client.login(process.env.BOT_TOKEN)
