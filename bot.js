@@ -1,7 +1,6 @@
 var Discord = require('discord.js');
 var fs = require('fs');
 var client = new Discord.Client();
-const moment = require('moment');
 
 client.on('ready', () => {
   console.log(`Welcome in servr Anis ${client.user.tag}!`);
