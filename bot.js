@@ -1653,11 +1653,11 @@ client.on('message', async message => {
         if(!message.channel.guild) return;
         message.delete()
           var command = message.content.split(" ")[0];
-    let muterole = message.guild.roles.find(`name`, "اسكت");//اسم رتب ميوت
+    let muterole = message.guild.roles.find(`name`, "Muted");//اسم رتب ميوت
     if(!muterole){
       try{
         muterole = await message.guild.createRole({
-          name: "اسكت",//اسم رتب ميوت
+          name: "Muted",//اسم رتب 
           color: "#000000",
           permissions:[]
         })
@@ -2001,60 +2001,6 @@ function save(){
   });
  
 }
-
-	client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('gmail')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الجيمل  هنا **`)
-    }
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('snapchat')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر سناب شات  هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('instagram')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الانستقرام هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('twitter')){
-        message.delete()
-    return message.reply(`** لايمكنك  نشر التويتر هنا **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('facebook')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر الفيس بوك هنا **`)
-    }
-});
-
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر اروابط في هذا اسرفر **`)
-    }
-
-});
 
 client.on('message', function(message) {
     if(message.content.startsWith("#report")) {
