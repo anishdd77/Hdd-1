@@ -1,6 +1,7 @@
 var Discord = require('discord.js');
 var fs = require('fs');
 var client = new Discord.Client();
+const moment = require('moment');
 
 client.on('ready', () => {
   console.log(`Welcome in servr Anis ${client.user.tag}!`);
@@ -154,12 +155,12 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
  
     message.author.sendEmbed(embed).then(msg => {
  
-        msg.react('◀').then( r => {
-            msg.react('▶')
+        msg.react(':track_previous:').then( r => {
+            msg.react(':fast_forward:')
  
  
-        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
-        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === ':track_previous:' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === ':fast_forward:' && user.id === message.author.id;
  
  
         const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
