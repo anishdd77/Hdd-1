@@ -88,44 +88,46 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 **
         ***__General orders__***
 **
-✴#id : 『عرض ملفك الشخصي』
-✴#server : 『معلومات عن السيرفر』
-✴#ping 『لمعرفه سرعه البوت』
-✴#bot/ معلومات عن البوت』
-✴#avatar/ يعرض صورتك او صوره شخص』
-✴#support/ سيرفر الدعم القني و المساعده』
-✴#draw / يكرر الكلام في صوره』
-✴#calculate / حاسبة』
-✴#say/يكرر الكلام الي تكتبو
-✴#skin =name in minecraft لإضهار سكنك في ماين طرافت 
-✴#roles/يعرض لك كل الرانكات بالسيرفر بشكل جميل
-✴#members معلومات عن الاعضاء
-✴${prefix}pic يكتب اي اسم في صورة
-✴${prefix} #buyلشراء رتبة هلبر اكتب 
-✴${prefix}report للإبلاغ عن شيئ
+✴#id > 『عرض ملفك الشخصي』
+✴#server > 『معلومات عن السيرفر』
+✴#ping>لمعرفه سرعه البوت』
+✴#bot> معلومات عن البوت』
+✴#avatar> يعرض صورتك او صوره شخص』
+✴#support>سيرفر الدعم القني و المساعده』
+✴#calculate > حاسبة』
+✴#say>يكرر الكلام الي تكتبو
+✴#skin >name in minecraft لإضهار سكنك في ماين طرافت 
+✴#roles>يعرض لك كل الرانكات بالسيرفر بشكل جميل
+✴#members >معلومات عن الاعضاء
+✴${prefix}pic >يكتب اي اسم في صورة
+✴${prefix} #buy>لشراء رتبة هلبر اكتب 
+✴${prefix}report >للإبلاغ عن شيئ
+✴${prefix}topinv > لعرض صاحب اكثر دعوات
+✴${prefix}tag > لعرض الكلام بشكل جميل و كبير 
+✴${prefix}rules > يعرض لك قوانين السيرفر
 
 **
   `
 ,`
         ***__Admin orders__***
 **
-✴#ban : 『لتعطي شخص باند』
-✴#kick : 『لتعطي شخص كيك』
-✴#clear : 『لمسح الشات برقم』
-✴#createroles : 『عمل رتب متكاملة للسيرفر』
-✴#voicesetup : 『انشاء روم فويس اونلاين
+✴#ban > 『لتعطي شخص باند』
+✴#kick > 『لتعطي شخص كيك』
+✴#clear > 『لمسح الشات برقم』
+✴#createroles > 『عمل رتب متكاملة للسيرفر』
+✴#voicesetup > 『انشاء روم فويس اونلاين
 لكتابة الكلام الذي في الروم اكتب voicesetup الكلام و 0 』
-✴#color 50 /انشاء 50 لون』
-✴#mute < mention > ➾ اسكات عضو
-✴#unmute <mention> ➾ فك الاسكات من العضو
-✴#bc『خيارات البرودكاست』
-✴#ceلمح لشات بعدد
-✴#role @user <rank> / لأعطاء رتبة لعضو معين
-✴#roleremove @user <rank> / لازالة الرتبة من شخص معين
-✴${prefix}hchannel / اخفاء الشات
-✴${prefix}schannel / اضهار الشات المخفية
-✴${prefix}ct لعمل روم كتابي
-✴${prefix}cv وم كتابي صوتي
+✴#color >50 /انشاء 50 لون』
+✴#mute < mention > > اسكات عضو
+✴#unmute <mention> > فك الاسكات من العضو
+✴#bc >『خيارات البرودكاست』
+✴#ce >لمح لشات بعدد
+✴#role @user <rank> > لأعطاء رتبة لعضو معين
+✴#roleremove @user <rank> >لازالة الرتبة من شخص معين
+✴${prefix}hchannel > اخفاء الشات
+✴${prefix}schannel > اضهار الشات المخفية
+✴${prefix}ct >لعمل روم كتابي
+✴${prefix}cv >وم كتابي صوتي
 ----------------------
 ✴#guilds : عدد سيرفر البوت
 ✴#inv : دعوه البوت الى سيرفر 
@@ -141,6 +143,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#تلعب   معاه مريم 
 ✴#يعطيك عقابات لازم تسويها : عقاب 
 ✴#ask : 『البوت يسئلك اسئلة』
+✴#فكك
 
  [welcome]يتم الترحيب عبر روم اسمه
 **
@@ -662,39 +665,32 @@ client.on('message', message => {
 });
 }});   
  
-        const arraySort = require('array-sort'), 
-          table = require('table');
-
-client.on('message' , async (message) => {
-
- if(message.content.split(' ')[0].toLowerCase() == prefix + 'top') {
-                 if(message.author.bot) return;
-        if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
-
-  var invites = await message.guild.fetchInvites();
-
-    invites = invites.array();
-
-    arraySort(invites, 'uses', { reverse: true });
-
-    let possibleInvites = ['User Invited |  Uses '];
-    invites.forEach(i => {
-        if (i.uses === 0) { 
-            return;
-            
-        }
-      possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
-    
+       client.on('message',message =>{
+    if(message.content.startsWith(prefix + 'topinv')) {
+  message.guild.fetchInvites().then(i =>{
+  var invites = [];
+   
+  i.forEach(inv =>{
+    var [invs,i]=[{},null];
      
-    })
-    
-    const embed = new Discord.RichEmbed()
- .setColor('#36393e')
-    .addField("Top Invites." ,`${(possibleInvites)}`)
-
-    message.channel.send(embed)
+    if(inv.maxUses){
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+    }else{
+        invs[inv.code] =+ inv.uses;
     }
-});
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+   
+  });
+  var embed = new Discord.RichEmbed()
+  .setColor("#000000")
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+  .setThumbnail("https://cdn.discordapp.com/attachments/442414506430169098/489929808244113409/JPEG_20180913_232108.jpg")
+           message.channel.send({ embed: embed });
+   
+  });
+   
+    }
+  });
 
 
 client.on('message', message => {
@@ -2142,7 +2138,7 @@ channel.send({embed : embed});
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("-hack")) {
+    if (message.content.startsWith("#hack")) {
         if(!message.author.id === '') return;
       if (message.author.bot) return
            message.delete();
@@ -2243,5 +2239,102 @@ client.on('message', message => {
            });
          }
 })
+
+client.on("message", message => {
+    if (message.content === "#rules") {
+           message.react("✅")
+     const embed = new Discord.RichEmbed() 
+         .setColor("#ffff00")
+         .setDescription(`
+  ●▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬●
+[ ★・rules   |  قوانين السيرفر  ]
+1) ممنوع السب مع اى سبب 
+2)ممنوع الحديث عن الدين او سبه او مفاوضات دينيه 
+5)ممنوع التحدث عن السياسه  "
+6)ممنوع الصور الاباحيه او اى شي مخل بالادب 
+7)ممنوع نشر صور من  مواقع التواصل الاجتماعى  بحقوق ملكيه
+8)ممنوع طلب الرتبه والرتب تكون بالتفاعل
+9)لاستخدام البوت  فى  #cmd
+__
+@everyone || @here
+●▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬●
+  
+    `)
+   
+      message.author.sendEmbed(embed)
+      
+      }
+}); 
+
+client.on('message', message => {
+	var prefix = "#";
+if (message.content.startsWith(prefix + 'tag')) {
+    let args = message.content.split(" ").slice(1);
+if(!args[0]) return message.reply('Write Some Things');  
+
+    figlet(args.join(" "), (err, data) => {
+              message.channel.send("```" + data + "```")
+           })
+}
+});
+
+client.on('message', message => {
+    if (message.content == "#فكك") {
+        var x = ["محمد",
+"مدرسة",
+"بيت",
+"الله",
+"بيت مقدس",
+"مهندس",
+"ريضيات",
+"بسم الله رحمن رحيم",
+"طماطم",
+"سيرفر",
+];
+        var x2 = ['م ح م ح',
+        "م د ر س ة",
+        "ب ي ت ",
+        "ا ل ل ه",
+"ب ي ت م ق د س",
+"م ه ن د س",
+"ر ي ض ي ا ت",
+"ب س م ا ل ل ه ر ح م ن ر ح ي م",
+"ط م ا ط م",
+"س ي ر ف ر",
+     ];
+        
+        var x3 = Math.floor(Math.random()*x.length)
+        message.channel.send(`  فكك
+ :  __**${x[x3]}**__
+لديك 20 ثانية`).then(msg1=> {
+            var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
+                maxMatches : 1,
+                time : 20000,
+                errors : ['time']
+            })
+        r.catch(() => {
+            return message.channel.send(`:negative_squared_cross_mark: لقد انتهى الوقت ولم يقم أحد بالأجابة بشكل صحيح 
+            الإجآبة الصحيحةة هي __**${x2[x3]}**__`)
+        })
+        
+        r.then((collected)=> {
+            message.channel.send(`${collected.first().author}لقد قمت بتفكيك كلمة في وقت مناسب`);
+        })
+        })
+    }
+})
+client.on('message', message => {
+  var prefix ="#";
+if (message.content.startsWith(prefix + 'perms')) {
+         if(!message.channel.guild) return;
+         var perms = JSON.stringify(message.channel.permissionsFor(message.author).serialize(), null, 4);
+         var zPeRms = new Discord.RichEmbed()
+         .setColor('RANDOM')
+         .setTitle(':tools: Permissions')
+         .addField('Your Permissions:',perms)
+                  message.channel.send({embed:zPeRms});
+ 
+    }
+});
 
 client.login(process.env.BOT_TOKEN)
