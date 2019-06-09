@@ -2128,8 +2128,8 @@ client.on('message',async message => {
 client.on('guildMemberAdd', member => {
     var embed = new Discord.RichEmbed()
     .setThumbnail(member.user.avatarURL)
-  .addField("*** شكرا الانضمامك إلـينـا حبيبي ***" ,member.user.username )
-    .setDescription('**# ``-`` __W__elcome __T__ø server 🥂**')// كلام ترحيب بعضو
+  .addField("***شكرا الانضمامك الـنـا***" ,member.user.username )
+    .setDescription('**# ``-`` __W__elcome __T__ø ${message.guild.name} 🥂**')// كلام ترحيب بعضو
     .setColor('RANDOM')
     .setImage('http://www.animatedimages.org/data/media/707/animated-welcome-image-0291.gif')// صور ترحيب
 var channel =member.guild.channels.find('name', 'welcome')// اسم شات ترحيب
@@ -2265,18 +2265,6 @@ __
       
       }
 }); 
-
-client.on('message', message => {
-if (message.content.startsWith(prefix + 'tag')) {
-    let args = message.content.split(" ").slice(1);
-if(!args[0]) return message.reply('مرجو كتابة نص الدي تريد');  
-
-    figlet(args.join(" "), (err, data) => {
-              message.channel.send("```" + data + "```")
-           })
-
-}
-});
 
 client.on('message', message => {
     if (message.content == "#فكك") {
