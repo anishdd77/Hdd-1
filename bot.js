@@ -74,6 +74,7 @@ client.on('ready', function(){
     }, ms);100000
 
 });
+
 client.on('message', message => {
 if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
     let pages = [`
@@ -84,8 +85,9 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 -⚠ صيانه كل يوم
 -💵 مجاني بل كامل 
 -📚 البوت عربي و سيتم اضافه اللغه النكليزية
-¤ [Aռɨֆ_ʍǟʟʊʍʏǟτ|ɢǟʍϵrツ  #0976البوت خاص ب] ¤
+¤ ✺☵⚌⚌⚌⚌⚌☵⚀ANIS_HDD⚀☵⚌⚌⚌⚌⚌☵✺¤
 **
+     ▛═════════『ِ «Anis_hdd» 』ِ═════════▜
         ***__General orders__***
 **
 ✴#id > 『عرض ملفك الشخصي』
@@ -100,7 +102,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 ✴#roles>يعرض لك كل الرانكات بالسيرفر بشكل جميل
 ✴#members >معلومات عن الاعضاء
 ✴${prefix}pic >يكتب اي اسم في صورة
-✴${prefix} #buy>لشراء رتبة هلبر اكتب 
+✴${prefix}buy>لشراء رتبة هلبر اكتب 
 ✴${prefix}report >للإبلاغ عن شيئ
 ✴${prefix}topinv > لعرض صاحب اكثر دعوات
 ✴${prefix}tag > لعرض الكلام بشكل جميل و كبير 
@@ -146,6 +148,7 @@ if (message.content.startsWith(prefix + 'help')) { //Anis_hdd - [ ANIS_Malumuat]
 
  [welcome]يتم الترحيب عبر روم اسمه
 **
+  ═════════『ِAnis_hdd』ِ═════════
    
 `]
     let page = 1;
@@ -551,7 +554,7 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 client.on('guildMemberAdd', member => {
-     const welcomer =  member.guild.channels.find('name', '✨щéļḉσᶆé✨');
+     const welcomer =  member.guild.channels.find('name', 'welcome');
     if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -593,7 +596,7 @@ const w = ['./img/w1.png'];
                         ctx.fontSize = '20px';
                         ctx.fillStyle = "#f1f1f1";
                         ctx.textAlign = "center";
-                        ctx.fillText(`welcome to ${member.guild.name}`, 300, 130);
+                        ctx.fillText(`welcome to server`, 300, 130);
                         
                         ctx.font = "bold 12px Arial";
                         ctx.fontSize = '20px';
@@ -641,7 +644,7 @@ client.on('guildMemberRemove', member => {
     channel.send({embed : embed});
     })
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","✨щéļḉσᶆé✨")); //اسم الرتبة
+    member.addRole(member.guild.roles.find("name","welcome")); //اسم الرتبة
     });
 	
 
@@ -1967,29 +1970,6 @@ reaction2.on("collect", r => {
 }
 });
 
-client.on("message", (message) => {
-let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-if (command == "ct") {
-            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-        let args = message.content.split(" ").slice(1);
-    message.guild.createChannel(args.join(' '), 'text');
-message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
-
-}
-});
-
-client.on("message", (message) => {
-     let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-if (command == "cv") {
-            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-        let args = message.content.split(" ").slice(1);
-    message.guild.createChannel(args.join(' '), 'voice');
-message.channel.sendMessage('تم انشاء روم صوتى')
-}
-});
-
 client.on('message',async message => {
   var room;
   var title;
@@ -2099,4 +2079,55 @@ __
       }
 }); 
 
+client.on('message', message => {//new msg event
+                if(!message.channel.guild) return;
+                  if(message.content.startsWith(prefix + 'setRainbow')) {//to create the rainbow role
+                      let role = message.guild.roles.find('name', 'Rainbowbot.')
+                    if(role) return message.channel.send(`This Step Already Completed !`)//if the role already created return with this msg
+                  //start of create role 
+                  if(!role){
+                    rainbow =  message.guild.createRole({
+                   name: "Rainbowbot.",//the role will create name
+                   color: "#000000",//the default color
+                   permissions:[]//the permissions
+                 //end of create role
+                })
+
+                }
+                message.channel.send('Done The Rainbow Role Setup Has Been Completed')//if the step completed
+                }})
+
+                client.on('ready', () => {//new ready event
+                  setInterval(function(){
+                      client.guilds.forEach(g => {
+                                  var role = g.roles.find('name', 'Rainbowbot.');//rainbow role name
+                                  if (role) {
+                                      role.edit({color : "RANDOM"});
+                                  };
+                      });
+                  }, 3000);//the rainbow time
+                })
+				
+				client.on('message', msg => {
+ if (msg.content.startsWith(prefix + 'cal')) {
+    let args = msg.content.split(" ").slice(1);
+        const question = args.join(' ');
+    if (args.length < 1) {
+        msg.reply('** حــدأد عــداد رجــاء مــنــك **');
+} else {    let answer;
+    try {
+        answer = math.eval(question);
+    } catch (err) {
+        msg.reply(`** دخـل رقـم فـقـط **: ${err} :x:`);
+    }
+    
+    const embed = new Discord.RichEmbed()
+    .addField("**إدخال**:",`**${question}**`, true)
+    .addField("**انتاج**:",`**${answer}**`, true)
+    msg.channel.send(embed)  .catch(console.error);
+
+    }
+};
+});
+				
 client.login(process.env.BOT_TOKEN)
